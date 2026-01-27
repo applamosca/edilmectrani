@@ -5,9 +5,10 @@ import { Button } from '@/components/ui/button';
 
 const navLinks = [
   { href: '#home', label: 'Home' },
-  { href: '#storia', label: 'La Storia' },
+  { href: '#storia', label: 'Chi Siamo' },
   { href: '#servizi', label: 'Servizi' },
   { href: '#parco-macchine', label: 'Parco Macchine' },
+  { href: '#riporto-freddo', label: 'Riporto a Freddo' },
   { href: '#metodo', label: 'Il Metodo' },
   { href: '#faq', label: 'FAQ' },
   { href: '#contatti', label: 'Contatti' },
@@ -89,11 +90,11 @@ const Header = () => {
           {/* CTA Button - Desktop */}
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href="tel:+390883000000"
+              href="tel:+393495360705"
               className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
             >
               <Phone className="w-4 h-4" />
-              <span className="text-sm">Chiamaci</span>
+              <span className="text-sm">349 5360705</span>
             </a>
             <Button
               variant="cta"

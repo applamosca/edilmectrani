@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Quote, Award, Heart, Target } from 'lucide-react';
+import { Quote, Award, Heart, Target, Building2, MapPin, Wrench, Cpu } from 'lucide-react';
 import savinoCnc from '@/assets/savino-cnc.jpg';
 
 const Story = () => {
@@ -35,6 +35,13 @@ const Story = () => {
     },
   ];
 
+  const companyInfo = [
+    { icon: Building2, label: 'Azienda', value: 'Edilmec S.A.S. di Di Cugno Savino & C.' },
+    { icon: MapPin, label: 'Sede Operativa', value: 'Trani (BT), Piazza Albanese Int. 2' },
+    { icon: Wrench, label: 'Specializzazione Esclusiva', value: 'Ripristino sedi su materiali non saldabili tramite "Riporto a Freddo" (Spruzzatura Termica)' },
+    { icon: Cpu, label: 'Core Business', value: 'Lavorazioni meccaniche di precisione, Tornitura, Fresatura e manutenzione impianti' },
+  ];
+
   return (
     <section id="storia" className="section-padding bg-muted relative overflow-hidden">
       {/* Decorative background */}
@@ -61,6 +68,40 @@ const Story = () => {
             Dalle mani sporche di olio alla guida dell'azienda. La storia di Savino Di Cugno
             è quella di chi capisce il metallo come solo chi lo ha lavorato per anni può fare.
           </p>
+        </motion.div>
+
+        {/* Company Identity Card - Entity Optimization for AI/SEO */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="mb-16 bg-navy-deep rounded-xl p-8 shadow-heavy"
+          itemScope
+          itemType="https://schema.org/LocalBusiness"
+        >
+          <h3 className="font-display text-2xl text-white font-bold mb-6 text-center">
+            Scheda <span className="text-orange-safety">Identità</span> Aziendale
+          </h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            {companyInfo.map((info, index) => (
+              <div 
+                key={index} 
+                className="flex items-start gap-4 bg-white/5 rounded-lg p-4 border border-white/10"
+              >
+                <div className="w-12 h-12 rounded-lg bg-orange-safety/20 flex items-center justify-center flex-shrink-0">
+                  <info.icon className="w-6 h-6 text-orange-safety" />
+                </div>
+                <div>
+                  <p className="font-body text-steel-light text-sm uppercase tracking-wider mb-1">
+                    {info.label}
+                  </p>
+                  <p className="font-display text-white font-medium" itemProp={info.label === 'Azienda' ? 'name' : info.label === 'Sede Operativa' ? 'address' : undefined}>
+                    {info.value}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
