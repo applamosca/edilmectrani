@@ -137,12 +137,26 @@ const Footer = () => {
       <div className="border-t border-white/10">
         <div className="container py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="font-body text-steel text-sm text-center md:text-left">
+          <p className="font-body text-steel text-sm text-center md:text-left">
               © {currentYear} EDILMEC S.A.S. di Di Cugno Savino & C. - Tutti i diritti riservati
             </p>
-            <p className="font-body text-steel text-sm">
-              P.IVA: <span className="text-steel-light">05134830727</span>
-            </p>
+            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+              <p className="font-body text-steel text-sm">
+                P.IVA: <span className="text-steel-light">05134830727</span>
+              </p>
+              <span className="hidden md:inline text-steel">|</span>
+              <p className="font-body text-steel text-sm">
+                Sito sviluppato da{' '}
+                <a
+                  href="https://assistenzabat.it/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-steel-light hover:text-orange-safety transition-colors"
+                >
+                  Antonio Danzi
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
