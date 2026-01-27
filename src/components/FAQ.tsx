@@ -10,6 +10,21 @@ import {
 
 const faqs = [
   {
+    question: 'In cosa consiste il riporto a freddo eseguito da Edilmec?',
+    answer:
+      "È una tecnica di spruzzatura termica che permette di rigenerare superfici metalliche usurate senza shock termici, ideale per sedi di cuscinetti e componenti di precisione. A differenza della saldatura tradizionale, il riporto a freddo non provoca deformazioni né cricche, rendendolo perfetto per materiali non saldabili come ghisa e alluminio.",
+  },
+  {
+    question: 'Quali dimensioni massime potete tornire?',
+    answer:
+      "Possiamo lavorare pezzi fino a 2500mm di lunghezza e 720mm di diametro sul banco grazie ai nostri torni paralleli. Il tornio CN arriva a Z 1500mm con diametro sul banco di 590mm e passaggio barra di 105mm. Per fresature, il centro di lavoro 4 assi ha una tavola di 1200x600mm.",
+  },
+  {
+    question: 'Dove si trova l\'officina Edilmec?',
+    answer:
+      "L'officina meccanica si trova a Trani (BT), in Piazza Albanese Int. 2, operativa per le province di Barletta-Andria-Trani e Bari. Serviamo tutta la Puglia e per progetti importanti lavoriamo anche a livello nazionale con spedizione del prodotto finito.",
+  },
+  {
     question: 'Chi realizza pezzi meccanici fuori produzione a Trani?',
     answer:
       "EDILMEC S.a.s. di Di Cugno Savino è specializzata nella ricostruzione di pezzi meccanici fuori produzione. Con sede a Trani (BT), offriamo servizi di tornitura CNC e costruzioni meccaniche per ricreare ricambi introvabili partendo da campioni o disegni tecnici.",
@@ -22,7 +37,7 @@ const faqs = [
   {
     question: 'Cosa fa EDILMEC S.a.s.?',
     answer:
-      "EDILMEC S.a.s. è un'officina meccanica di precisione specializzata in: Tornitura e programmazione CNC, Costruzioni meccaniche e saldature, Manutenzione e riparazione impianti industriali, Ricostruzione di pezzi meccanici fuori produzione. Lavoriamo per l'industria, l'agricoltura e i privati in tutta la Puglia.",
+      "EDILMEC S.a.s. è un'officina meccanica di precisione specializzata in: Tornitura e programmazione CNC, Costruzioni meccaniche e saldature, Manutenzione e riparazione impianti industriali, Ricostruzione di pezzi meccanici fuori produzione, e Riporto a Freddo (spruzzatura termica) per il recupero di pezzi critici. Lavoriamo per l'industria, l'agricoltura e i privati in tutta la Puglia.",
   },
   {
     question: 'È possibile ricostruire un ingranaggio o pezzo meccanico partendo da uno rotto?',
@@ -37,12 +52,7 @@ const faqs = [
   {
     question: 'EDILMEC offre preventivi gratuiti?',
     answer:
-      "Assolutamente sì! Tutti i nostri preventivi sono gratuiti e senza impegno. Contattaci telefonicamente, via email o compilando il form sul sito. Dopo aver valutato la tua richiesta, ti forniremo un preventivo dettagliato con tempi e costi.",
-  },
-  {
-    question: 'Quali zone servite?',
-    answer:
-      "Siamo situati a Trani (BT) e serviamo tutta la Puglia con particolare focus sulla provincia BAT (Barletta-Andria-Trani), Bari e Foggia. Per progetti importanti, lavoriamo anche a livello nazionale con spedizione del prodotto finito.",
+      "Assolutamente sì! Tutti i nostri preventivi sono gratuiti e senza impegno. Contattaci telefonicamente al 349 5360705, via email o compilando il form sul sito. Dopo aver valutato la tua richiesta, ti forniremo un preventivo dettagliato con tempi e costi.",
   },
   {
     question: 'Quali materiali lavorate?',

@@ -1,41 +1,51 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Cog, Settings, Zap, Hammer, CircuitBoard, Gauge } from 'lucide-react';
+import { Cog, Settings, Zap, Hammer, CircuitBoard, Gauge, Flame } from 'lucide-react';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 
 const macchinari = [
   {
-    categoria: 'Tornitura',
-    icon: Cog,
-    items: [
-      { nome: 'Tornio CN', specifiche: 'Z 1500mm' },
-      { nome: 'Tornio Parallelo', specifiche: 'Z 2500 (Ø sul banco 720mm)' },
-      { nome: 'Torni tradizionali', specifiche: 'Z 1500 / Z 800' },
-    ],
+    nome: 'Centro di Lavoro 4 Assi',
+    capacita: 'Tavola 1200x600, Corsa X 1000, Y 600, Z 600',
+    utilizzo: 'Fresatura complessa di precisione',
   },
   {
-    categoria: 'Fresatura',
-    icon: Settings,
-    items: [
-      { nome: 'Centro di lavoro 4 assi', specifiche: '1200x600mm' },
-      { nome: 'Fresatrice verticale', specifiche: 'Testa inclinabile' },
-    ],
+    nome: 'Tornio CN',
+    capacita: 'Z 1500mm, Ø carro 360mm, Ø banco 590mm, Passaggio barra 105mm',
+    utilizzo: 'Tornitura automatizzata grandi diametri',
   },
   {
-    categoria: 'Lavorazioni Speciali',
-    icon: Zap,
-    items: [
-      { nome: 'Stozzatrice', specifiche: 'Corsa 300mm' },
-      { nome: 'Elettroerosione', specifiche: 'A tuffo' },
-    ],
+    nome: 'Tornio Tradizionale (Grande)',
+    capacita: 'Z 2500, Ø banco 720mm, Passaggio barra 105mm',
+    utilizzo: 'Lavorazione alberi lunghi e pesanti',
   },
   {
-    categoria: 'Attrezzature',
-    icon: Hammer,
-    items: [
-      { nome: 'Pressa', specifiche: '50 Tonnellate' },
-      { nome: 'Spruzzatura termica', specifiche: 'Riporto a freddo' },
-    ],
+    nome: 'Stozzatrice / Limatrice',
+    capacita: 'Corsa 300mm',
+    utilizzo: 'Esecuzione chiavette su alberi lunghi ciechi',
+  },
+  {
+    nome: 'Elettroerosione a Tuffo',
+    capacita: 'Corsa Z 220x350, Y 260',
+    utilizzo: 'Lavorazioni su metalli duri e sagome complesse',
+  },
+  {
+    nome: 'Reparto Saldatura',
+    capacita: 'TIG AC/DC, Filo Continuo, Elettrodo, Ossiacetilenica',
+    utilizzo: 'Carpenteria e riparazioni strutturali',
+  },
+  {
+    nome: 'Pressa Idraulica',
+    capacita: '50 Tonnellate, Luce 1500mm',
+    utilizzo: 'Raddrizzatura e montaggi',
   },
 ];
 
@@ -73,53 +83,60 @@ const ParcoMacchine = () => {
           </h2>
           <p className="text-steel-light text-lg font-body leading-relaxed">
             Il nostro parco macchine è attrezzato per affrontare qualsiasi sfida meccanica, 
-            dalla tornitura di precisione all'elettroerosione.
+            dalla tornitura di precisione all'elettroerosione. Ecco i dati tecnici delle nostre attrezzature.
           </p>
         </motion.div>
 
-        {/* Machines Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {macchinari.map((categoria, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="bg-navy-light rounded-xl p-6 border border-white/10 hover:border-orange-safety/50 transition-all duration-300 group"
-            >
-              {/* Category Header */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-orange-safety/20 flex items-center justify-center group-hover:bg-orange-safety transition-colors duration-300">
-                  <categoria.icon className="w-6 h-6 text-orange-safety group-hover:text-white transition-colors duration-300" />
-                </div>
-                <h3 className="font-display text-xl text-white font-semibold">
-                  {categoria.categoria}
-                </h3>
-              </div>
-
-              {/* Items List */}
-              <ul className="space-y-4">
-                {categoria.items.map((item, i) => (
-                  <li key={i} className="border-l-2 border-orange-safety/30 pl-4">
-                    <p className="font-body text-white font-medium text-sm">
-                      {item.nome}
-                    </p>
-                    <p className="font-body text-steel-light text-xs mt-1">
-                      {item.specifiche}
-                    </p>
-                  </li>
+        {/* Technical Specifications Table */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-navy-light rounded-xl border border-white/10 overflow-hidden mb-12"
+        >
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow className="border-white/10 hover:bg-transparent">
+                  <TableHead className="text-orange-safety font-display text-base py-5 px-6">
+                    Macchinario
+                  </TableHead>
+                  <TableHead className="text-orange-safety font-display text-base py-5 px-6">
+                    Capacità / Corsa (Dati Tecnici)
+                  </TableHead>
+                  <TableHead className="text-orange-safety font-display text-base py-5 px-6">
+                    Utilizzo Tipico
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {macchinari.map((macchina, index) => (
+                  <TableRow 
+                    key={index} 
+                    className="border-white/10 hover:bg-white/5 transition-colors"
+                  >
+                    <TableCell className="font-display text-white font-medium py-4 px-6">
+                      {macchina.nome}
+                    </TableCell>
+                    <TableCell className="font-body text-steel-light py-4 px-6">
+                      {macchina.capacita}
+                    </TableCell>
+                    <TableCell className="font-body text-steel-light py-4 px-6">
+                      {macchina.utilizzo}
+                    </TableCell>
+                  </TableRow>
                 ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
+              </TableBody>
+            </Table>
+          </div>
+        </motion.div>
 
         {/* Technical Specs Banner */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           {[
             { icon: CircuitBoard, label: 'CNC 4 Assi', value: 'Controllo Numerico' },
