@@ -1,45 +1,30 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Cpu, Flame, Settings, RefreshCw, ArrowRight } from 'lucide-react';
+import { Cpu, Wrench, Settings, Sparkles, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import tornioUrsus from '@/assets/tornio-ursus.jpg';
-import cncJupiter from '@/assets/cnc-jupiter.jpg';
-import fresatrice from '@/assets/fresatrice.jpg';
-import segatrice from '@/assets/segatrice-bianco.jpg';
 
 const services = [
   {
     icon: Cpu,
-    title: 'Tornitura e Programmazione CNC',
-    description:
-      'Lavorazioni di precisione con torni a controllo numerico. Programmazione diretta in macchina per geometrie complesse.',
-    keywords: ['Tornitura CNC Puglia', 'Programmazione CNC Trani'],
-    image: tornioUrsus,
+    title: 'Tornitura e Fresatura CNC',
+    description: 'Lavorazioni di precisione con torni e frese a controllo numerico. Programmazione diretta in macchina per geometrie complesse.',
+  },
+  {
+    icon: Wrench,
+    title: 'Riparazioni e Saldature',
+    description: 'Saldature TIG, MIG e ad elettrodo per acciaio, inox e alluminio. Riparazioni strutturali su macchinari industriali.',
   },
   {
     icon: Settings,
-    title: 'Costruzioni Meccaniche',
-    description:
-      'Realizzazione di componenti meccanici su misura, dalla prototipazione alla produzione in serie.',
-    keywords: ['Costruzioni meccaniche BAT', 'Componenti su misura'],
-    image: cncJupiter,
+    title: 'Costruzione Componenti a Campione',
+    description: 'Realizzazione di pezzi meccanici su misura partendo da campioni, disegni tecnici o specifiche del cliente.',
   },
   {
-    icon: Flame,
-    title: 'Saldature di Precisione',
-    description:
-      'Saldature TIG, MIG e ad elettrodo per acciaio, inox e alluminio. Riparazioni strutturali e costruzioni.',
-    keywords: ['Saldature industriali', 'Riparazioni metallo'],
-    image: fresatrice,
-  },
-  {
-    icon: RefreshCw,
-    title: 'Manutenzione Impianti',
-    description:
-      'Interventi di manutenzione ordinaria e straordinaria su macchinari industriali e impianti produttivi.',
-    keywords: ['Manutenzione industriale BAT', 'Riparazione macchinari'],
-    image: segatrice,
+    icon: Sparkles,
+    title: 'Ripristino Sedi con RIPORTO A FREDDO',
+    description: 'Servizio esclusivo di spruzzatura termica per il ripristino di sedi usurate su materiali non saldabili.',
+    isExclusive: true,
   },
 ];
 
@@ -55,7 +40,7 @@ const Services = () => {
   };
 
   return (
-    <section id="servizi" className="section-padding bg-navy relative overflow-hidden">
+    <section id="servizi" className="py-20 md:py-32 bg-navy-deep relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -88,50 +73,40 @@ const Services = () => {
           </p>
         </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          {services.map((service, index) => (
-            <motion.article
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="group relative bg-navy-light rounded-lg overflow-hidden hover:shadow-heavy transition-all duration-500"
-            >
-              {/* Image */}
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-light via-navy-light/50 to-transparent" />
-                <div className="absolute top-4 left-4 w-12 h-12 rounded-lg bg-orange-safety flex items-center justify-center">
-                  <service.icon className="w-6 h-6 text-white" />
+        {/* Services List */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <ul className="space-y-6">
+            {services.map((service, index) => (
+              <motion.li
+                key={index}
+                initial={{ opacity: 0, x: -40 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                className={`flex items-start gap-6 p-6 rounded-lg transition-all duration-300 hover:bg-navy-light ${
+                  service.isExclusive ? 'bg-navy-light border-l-4 border-orange-safety' : 'bg-navy'
+                }`}
+              >
+                <div className={`flex-shrink-0 w-14 h-14 rounded-lg flex items-center justify-center ${
+                  service.isExclusive ? 'bg-orange-safety' : 'bg-steel-dark'
+                }`}>
+                  <service.icon className="w-7 h-7 text-white" />
                 </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="font-display text-xl text-white font-semibold mb-3">
-                  {service.title}
-                </h3>
-                <p className="font-body text-steel-light leading-relaxed mb-4">
-                  {service.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {service.keywords.map((keyword, i) => (
-                    <span
-                      key={i}
-                      className="text-xs font-body text-orange-safety bg-orange-safety/10 px-3 py-1 rounded-full"
-                    >
-                      {keyword}
-                    </span>
-                  ))}
+                <div className="flex-1">
+                  <h3 className="font-display text-xl text-white font-semibold mb-2 flex items-center gap-3">
+                    {service.title}
+                    {service.isExclusive && (
+                      <span className="text-xs font-body uppercase tracking-wider bg-orange-safety/20 text-orange-safety px-3 py-1 rounded-full">
+                        Esclusivo
+                      </span>
+                    )}
+                  </h3>
+                  <p className="font-body text-steel-light leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
-              </div>
-            </motion.article>
-          ))}
+              </motion.li>
+            ))}
+          </ul>
         </div>
 
         {/* Superpower Section */}
@@ -145,34 +120,25 @@ const Services = () => {
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
 
-          <div className="relative grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <span className="inline-block text-white/80 font-body text-sm uppercase tracking-[0.3em] mb-4">
-                Il Nostro Superpotere
-              </span>
-              <h3 className="font-display text-3xl md:text-4xl text-white font-bold mb-4">
-                "Se non esiste più,
-                <br />
-                noi lo costruiamo"
-              </h3>
-              <p className="font-body text-white/90 text-lg leading-relaxed mb-6">
-                Il tuo pezzo di ricambio è fuori produzione? Portaci il campione rotto o il disegno
-                tecnico: lo ricreiamo da zero, identico all'originale o migliorato secondo le tue esigenze.
-              </p>
-              <Button
-                variant="heroOutline"
-                onClick={scrollToContacts}
-                className="group"
-              >
-                Richiedi preventivo per il tuo pezzo introvabile
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </div>
-            <div className="text-center">
-              <div className="inline-block">
-                <RefreshCw className="w-32 h-32 text-white/20 animate-spin" style={{ animationDuration: '20s' }} />
-              </div>
-            </div>
+          <div className="relative text-center max-w-2xl mx-auto">
+            <span className="inline-block text-white/80 font-body text-sm uppercase tracking-[0.3em] mb-4">
+              Il Nostro Superpotere
+            </span>
+            <h3 className="font-display text-3xl md:text-4xl text-white font-bold mb-4">
+              "Se non esiste più, noi lo costruiamo"
+            </h3>
+            <p className="font-body text-white/90 text-lg leading-relaxed mb-8">
+              Il tuo pezzo di ricambio è fuori produzione? Portaci il campione rotto o il disegno
+              tecnico: lo ricreiamo da zero, identico all'originale o migliorato secondo le tue esigenze.
+            </p>
+            <Button
+              variant="heroOutline"
+              onClick={scrollToContacts}
+              className="group"
+            >
+              Richiedi preventivo per il tuo pezzo introvabile
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </div>
         </motion.div>
       </div>

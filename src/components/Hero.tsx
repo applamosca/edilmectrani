@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import logoEdilmecHero from '@/assets/logo-edilmec-hero.jpeg';
+import lavorazioneScintille from '@/assets/lavorazione-scintille.jpg';
 
 const Hero = () => {
   const scrollToContacts = () => {
@@ -23,25 +23,45 @@ const Hero = () => {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background Image - Logo Edilmec */}
+      {/* Background Image - Sparks/Lathe */}
       <div className="absolute inset-0">
         <img
-          src={logoEdilmecHero}
-          alt="EDILMEC - Officina Meccanica di Precisione"
-          className="w-full h-full object-contain md:object-cover bg-black"
+          src={lavorazioneScintille}
+          alt="Lavorazione al tornio con scintille"
+          className="w-full h-full object-cover"
         />
-        {/* Subtle overlay for better contrast on buttons */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        {/* Dark overlay 80% opacity */}
+        <div className="absolute inset-0 bg-black/80" />
       </div>
 
-      {/* Content - Only CTA, no title since image has logo */}
-      <div className="container relative z-10 flex flex-col items-center justify-end min-h-screen pb-32">
-        {/* CTAs at bottom */}
+      {/* Content */}
+      <div className="container relative z-10 flex flex-col items-center justify-center text-center px-4">
+        {/* Main Title */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-orange-safety mb-4"
+        >
+          EDILMEC S.A.S.
+        </motion.h1>
+        
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="font-body text-xl md:text-2xl lg:text-3xl text-white mb-12"
+        >
+          Officina Meccanica di Precisione
+        </motion.p>
+
+        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4"
+          className="flex flex-col sm:flex-row gap-6"
         >
           <Button variant="hero" onClick={scrollToContacts}>
             Richiedi Preventivo Gratuito
