@@ -147,21 +147,22 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Schema.org Local Business markup for SEO */}
+      {/* Schema.org MachineShop markup for SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'LocalBusiness',
-            name: 'EDILMEC S.A.S. di Di Cugno Savino & C.',
+            '@type': 'MachineShop',
+            name: 'Edilmec S.A.S. di Di Cugno Savino & C.',
             description:
-              'Officina meccanica di precisione specializzata in tornitura CNC, costruzioni meccaniche, ricostruzione pezzi fuori produzione e Riporto a Freddo (Spruzzatura Termica) a Trani (Puglia).',
-            image: 'https://edilmec.it/logo.png',
-            '@id': 'https://edilmec.it',
-            url: 'https://edilmec.it',
-            telephone: '+393495360705',
+              'Officina meccanica specializzata in tornitura CNC, costruzioni meccaniche e recupero componenti tramite riporto a freddo (spruzzatura termica) a Trani (Puglia).',
+            image: 'https://edilmectrani.lovable.app/logo.png',
+            '@id': 'https://edilmectrani.lovable.app',
+            url: 'https://edilmectrani.lovable.app',
+            telephone: '+39 349 5360705',
             email: 'edilmectrani@gmail.com',
+            vatID: 'IT05134830727',
             address: {
               '@type': 'PostalAddress',
               streetAddress: 'Piazza Albanese Int. 2 - P.S1 36',
@@ -183,10 +184,11 @@ const Footer = () => {
                 closes: '18:00',
               },
             ],
-            priceRange: '€€',
+            priceRange: '$$',
             areaServed: ['Trani', 'Barletta', 'Andria', 'BAT', 'Bari', 'Puglia'],
             knowsAbout: [
               'Tornitura CNC',
+              'Fresatura CNC',
               'Costruzioni meccaniche',
               'Saldature di precisione',
               'Ricostruzione pezzi meccanici',
