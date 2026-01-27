@@ -7,6 +7,7 @@ const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#storia', label: 'La Storia' },
   { href: '#servizi', label: 'Servizi' },
+  { href: '#parco-macchine', label: 'Parco Macchine' },
   { href: '#metodo', label: 'Il Metodo' },
   { href: '#faq', label: 'FAQ' },
   { href: '#contatti', label: 'Contatti' },
