@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const navLinks = [
@@ -69,14 +69,7 @@ const Header = () => {
           </nav>
 
           {/* CTA Button - Desktop */}
-          <div className="hidden lg:flex items-center gap-4">
-            <a
-              href="tel:+393495360705"
-              className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
-            >
-              <Phone className="w-4 h-4" />
-              <span className="text-sm">349 5360705</span>
-            </a>
+          <div className="hidden lg:flex items-center">
             <Button
               variant="cta"
               onClick={() => scrollToSection('#contatti')}
