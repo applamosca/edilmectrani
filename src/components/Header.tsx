@@ -47,17 +47,8 @@ const Header = () => {
         }`}
       >
         <div className="container flex items-center justify-between">
-          {/* Home Link */}
-          <a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('#home');
-            }}
-            className="text-white font-display text-sm uppercase tracking-wider hover:text-red-edilmec transition-colors"
-          >
-            Home
-          </a>
+          {/* Spacer for layout balance */}
+          <div className="w-8" />
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
