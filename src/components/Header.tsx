@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import logoEdilmec from '@/assets/logo-edilmec.jpeg';
 
 const navLinks = [
   { href: '#home', label: 'Home' },
@@ -48,7 +47,7 @@ const Header = () => {
         }`}
       >
         <div className="container flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo Text */}
           <a
             href="#home"
             onClick={(e) => {
@@ -57,11 +56,9 @@ const Header = () => {
             }}
             className="flex items-center"
           >
-            <img
-              src={logoEdilmec}
-              alt="EDILMEC S.A.S. - Officina Meccanica di Precisione"
-              className="h-14 md:h-16 w-auto"
-            />
+            <span className="font-display text-xl md:text-2xl font-bold text-white tracking-wider">
+              EDILMEC<span className="text-red-edilmec">.</span>
+            </span>
           </a>
 
           {/* Desktop Navigation */}
