@@ -59,13 +59,13 @@ const Services = () => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="inline-flex items-center gap-2 text-orange-safety font-body text-sm uppercase tracking-[0.3em] mb-4">
-            <span className="w-8 h-0.5 bg-orange-safety" />
+          <span className="inline-flex items-center gap-2 text-red-edilmec font-body text-sm uppercase tracking-[0.3em] mb-4">
+            <span className="w-8 h-0.5 bg-red-edilmec" />
             I Nostri Servizi
-            <span className="w-8 h-0.5 bg-orange-safety" />
+            <span className="w-8 h-0.5 bg-red-edilmec" />
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-white font-bold mb-6">
-            Competenze al Tuo <span className="text-orange-safety">Servizio</span>
+            Competenze al Tuo <span className="text-red-edilmec">Servizio</span>
           </h2>
           <p className="text-steel-light text-lg font-body leading-relaxed">
             Dalla tornitura CNC alla ricostruzione di pezzi introvabili,
@@ -83,11 +83,11 @@ const Services = () => {
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
                 className={`flex items-start gap-6 p-6 rounded-lg transition-all duration-300 hover:bg-navy-light ${
-                  service.isExclusive ? 'bg-navy-light border-l-4 border-orange-safety' : 'bg-navy'
+                  service.isExclusive ? 'bg-navy-light border-l-4 border-red-edilmec' : 'bg-navy'
                 }`}
               >
                 <div className={`flex-shrink-0 w-14 h-14 rounded-lg flex items-center justify-center ${
-                  service.isExclusive ? 'bg-orange-safety' : 'bg-steel-dark'
+                  service.isExclusive ? 'bg-red-edilmec' : 'bg-steel-dark'
                 }`}>
                   <service.icon className="w-7 h-7 text-white" />
                 </div>
@@ -95,7 +95,7 @@ const Services = () => {
                   <h3 className="font-display text-xl text-white font-semibold mb-2 flex items-center gap-3">
                     {service.title}
                     {service.isExclusive && (
-                      <span className="text-xs font-body uppercase tracking-wider bg-orange-safety/20 text-orange-safety px-3 py-1 rounded-full">
+                      <span className="text-xs font-body uppercase tracking-wider bg-red-edilmec/20 text-red-edilmec px-3 py-1 rounded-full">
                         Esclusivo
                       </span>
                     )}
@@ -114,7 +114,7 @@ const Services = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="relative bg-gradient-to-r from-orange-safety to-orange-safety-hover rounded-2xl p-8 md:p-12 overflow-hidden"
+          className="relative bg-gradient-to-r from-red-edilmec to-red-edilmec-hover rounded-2xl p-8 md:p-12 overflow-hidden"
         >
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />

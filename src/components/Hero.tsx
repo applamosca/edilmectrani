@@ -41,7 +41,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-orange-safety mb-4"
+          className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-red-edilmec mb-4"
         >
           EDILMEC S.A.S.
         </motion.h1>

@@ -38,7 +38,7 @@ const RiportoFreddo = () => {
   return (
     <section id="riporto-freddo" className="section-padding bg-muted relative overflow-hidden">
       {/* Decorative gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-safety/5 via-transparent to-navy/5" />
+      <div className="absolute inset-0 bg-gradient-to-br from-red-edilmec/5 via-transparent to-navy/5" />
 
       <div className="container relative" ref={ref}>
         {/* Section Header */}
@@ -48,14 +48,14 @@ const RiportoFreddo = () => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-4xl mx-auto mb-16"
         >
-          <span className="inline-flex items-center gap-2 text-orange-safety font-body text-sm uppercase tracking-[0.3em] mb-4">
-            <span className="w-8 h-0.5 bg-orange-safety" />
+          <span className="inline-flex items-center gap-2 text-red-edilmec font-body text-sm uppercase tracking-[0.3em] mb-4">
+            <span className="w-8 h-0.5 bg-red-edilmec" />
             Servizio Esclusivo
-            <span className="w-8 h-0.5 bg-orange-safety" />
+            <span className="w-8 h-0.5 bg-red-edilmec" />
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-foreground font-bold mb-6">
             Recupero Funzionale tramite{' '}
-            <span className="text-orange-safety">Spruzzatura Termica</span>
+            <span className="text-red-edilmec">Spruzzatura Termica</span>
             <br />
             <span className="text-2xl md:text-3xl text-muted-foreground">(Riporto a Freddo)</span>
           </h2>
@@ -85,7 +85,7 @@ const RiportoFreddo = () => {
               
               {/* Overlay badge */}
               <div className="absolute bottom-6 left-6 right-6">
-                <div className="bg-orange-safety/90 backdrop-blur-sm rounded-lg p-4 flex items-center gap-3">
+                <div className="bg-red-edilmec/90 backdrop-blur-sm rounded-lg p-4 flex items-center gap-3">
                   <Flame className="w-8 h-8 text-white flex-shrink-0" />
                   <div>
                     <p className="font-display text-white font-bold">Tecnologia Esclusiva</p>
@@ -96,7 +96,7 @@ const RiportoFreddo = () => {
             </div>
 
             {/* Decorative accent */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-orange-safety/20 rounded-lg -z-10" />
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-red-edilmec/20 rounded-lg -z-10" />
           </motion.div>
 
           {/* Content Column */}
@@ -116,8 +116,8 @@ const RiportoFreddo = () => {
                   transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                   className="flex gap-4 bg-background p-5 rounded-lg shadow-industrial hover:shadow-heavy transition-shadow"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-orange-safety/10 flex items-center justify-center flex-shrink-0">
-                    <vantaggio.icon className="w-6 h-6 text-orange-safety" />
+                  <div className="w-12 h-12 rounded-lg bg-red-edilmec/10 flex items-center justify-center flex-shrink-0">
+                    <vantaggio.icon className="w-6 h-6 text-red-edilmec" />
                   </div>
                   <div>
                     <h3 className="font-display text-foreground font-semibold mb-1">
@@ -139,7 +139,7 @@ const RiportoFreddo = () => {
               className="bg-navy-deep rounded-xl p-6"
             >
               <h3 className="font-display text-white font-semibold mb-4 flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-orange-safety" />
+                <CheckCircle className="w-5 h-5 text-red-edilmec" />
                 Applicazioni Tipiche
               </h3>
               <div className="grid grid-cols-2 gap-3">
@@ -148,7 +148,7 @@ const RiportoFreddo = () => {
                     key={index}
                     className="flex items-center gap-2 text-steel-light font-body text-sm"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-safety flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-edilmec flex-shrink-0" />
                     {app}
                   </div>
                 ))}

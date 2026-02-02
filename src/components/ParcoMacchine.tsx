@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Cog, Settings, Zap, Hammer, CircuitBoard, Gauge, Flame } from 'lucide-react';
+import { Cog, Hammer, CircuitBoard, Gauge } from 'lucide-react';
 import {
   Table,
   TableBody,
@@ -73,13 +73,13 @@ const ParcoMacchine = () => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="inline-flex items-center gap-2 text-orange-safety font-body text-sm uppercase tracking-[0.3em] mb-4">
-            <span className="w-8 h-0.5 bg-orange-safety" />
+          <span className="inline-flex items-center gap-2 text-red-edilmec font-body text-sm uppercase tracking-[0.3em] mb-4">
+            <span className="w-8 h-0.5 bg-red-edilmec" />
             Parco Macchine
-            <span className="w-8 h-0.5 bg-orange-safety" />
+            <span className="w-8 h-0.5 bg-red-edilmec" />
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-white font-bold mb-6">
-            Tecnologia al <span className="text-orange-safety">Servizio</span> della Precisione
+            Tecnologia al <span className="text-red-edilmec">Servizio</span> della Precisione
           </h2>
           <p className="text-steel-light text-lg font-body leading-relaxed">
             Il nostro parco macchine è attrezzato per affrontare qualsiasi sfida meccanica, 
@@ -98,13 +98,13 @@ const ParcoMacchine = () => {
             <Table>
               <TableHeader>
                 <TableRow className="border-white/10 hover:bg-transparent">
-                  <TableHead className="text-orange-safety font-display text-base py-5 px-6">
+                  <TableHead className="text-red-edilmec font-display text-base py-5 px-6">
                     Macchinario
                   </TableHead>
-                  <TableHead className="text-orange-safety font-display text-base py-5 px-6">
+                  <TableHead className="text-red-edilmec font-display text-base py-5 px-6">
                     Capacità / Corsa (Dati Tecnici)
                   </TableHead>
-                  <TableHead className="text-orange-safety font-display text-base py-5 px-6">
+                  <TableHead className="text-red-edilmec font-display text-base py-5 px-6">
                     Utilizzo Tipico
                   </TableHead>
                 </TableRow>
@@ -148,7 +148,7 @@ const ParcoMacchine = () => {
               key={index}
               className="bg-white/5 rounded-lg p-4 text-center border border-white/10"
             >
-              <stat.icon className="w-8 h-8 text-orange-safety mx-auto mb-2" />
+              <stat.icon className="w-8 h-8 text-red-edilmec mx-auto mb-2" />
               <p className="font-display text-white font-bold text-lg">{stat.value}</p>
               <p className="font-body text-steel-light text-xs uppercase tracking-wider">
                 {stat.label}

@@ -46,21 +46,21 @@
     --steel: 210 10% 50%;
     --steel-light: 210 10% 70%;
     --steel-dark: 210 15% 30%;
-    --orange-safety: 25 95% 53%;
-    --orange-safety-hover: 25 95% 45%;
-    --navy-deep: 215 60% 12%;
-    --navy: 215 60% 18%;
-    --navy-light: 215 45% 25%;
+    --red-edilmec: 358 80% 50%;
+    --red-edilmec-hover: 358 80% 42%;
+    --navy-deep: 0 0% 0%;
+    --navy: 0 0% 5%;
+    --navy-light: 0 0% 12%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(215 60% 12%) 0%, hsl(215 45% 25%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0%) 0%, hsl(0 0% 12%) 100%);
     --gradient-steel: linear-gradient(180deg, hsl(210 10% 50%) 0%, hsl(210 15% 30%) 100%);
-    --gradient-overlay: linear-gradient(180deg, hsla(215, 60%, 12%, 0.85) 0%, hsla(215, 60%, 12%, 0.6) 100%);
+    --gradient-overlay: linear-gradient(180deg, hsla(0, 0%, 0%, 0.85) 0%, hsla(0, 0%, 0%, 0.6) 100%);
 
     /* Shadows */
-    --shadow-industrial: 0 4px 20px -2px hsla(215, 60%, 12%, 0.15);
-    --shadow-heavy: 0 10px 40px -5px hsla(215, 60%, 12%, 0.25);
-    --shadow-glow-orange: 0 0 30px hsla(25, 95%, 53%, 0.4);
+    --shadow-industrial: 0 4px 20px -2px hsla(0, 0%, 0%, 0.15);
+    --shadow-heavy: 0 10px 40px -5px hsla(0, 0%, 0%, 0.25);
+    --shadow-glow-red: 0 0 30px hsla(358, 80%, 50%, 0.4);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -162,19 +162,19 @@
     box-shadow: var(--shadow-heavy);
   }
 
-  .glow-orange {
-    box-shadow: var(--shadow-glow-orange);
+  .glow-red {
+    box-shadow: var(--shadow-glow-red);
   }
 
   /* Industrial line decoration */
   .line-accent::before {
     content: '';
-    @apply absolute left-0 top-0 w-1 h-full bg-orange-safety;
+    @apply absolute left-0 top-0 w-1 h-full bg-red-edilmec;
   }
 
   .line-accent-bottom::after {
     content: '';
-    @apply absolute left-0 bottom-0 w-16 h-1 bg-orange-safety;
+    @apply absolute left-0 bottom-0 w-16 h-1 bg-red-edilmec;
   }
 }
 

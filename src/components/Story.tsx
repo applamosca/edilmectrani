@@ -1,43 +1,43 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Quote, Award, Heart, Target, Building2, MapPin, Wrench, Cpu } from 'lucide-react';
+import { Quote, Award, Heart, Target, Building2, MapPin, Wrench, Cpu, Users, Lightbulb, Factory } from 'lucide-react';
 import savinoCnc from '@/assets/savino-cnc.jpg';
 
 const Story = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const timelineItems = [
+  const storyChapters = [
     {
-      year: 'Gli Inizi',
-      title: 'Mani sporche di olio',
+      icon: Users,
+      title: 'Le Radici: Un\'Eredità Lunga Ottant\'Anni',
       description:
-        'Savino Di Cugno non è nato dietro una scrivania. Ha iniziato come operaio, facendo anni di dura gavetta nei reparti di produzione.',
+        'La storia della EDILMEC SAS affonda le sue radici in una tradizione familiare che attraversa tre generazioni. Tutto ha inizio oltre 50 anni fa, grazie all\'esperienza e alla maestria del nonno di Savino di Cugno, che ha saputo tramandare non solo i segreti della lavorazione meccanica, ma soprattutto l\'etica del lavoro e la passione per l\'eccellenza.',
     },
     {
-      year: "L'Esperienza",
-      title: 'Il suono delle macchine',
+      icon: Wrench,
+      title: 'L\'Esperienza: Trent\'anni sul Campo',
       description:
-        'Conosce ogni rumore dei torni, ogni vibrazione delle frese. Ha imparato a "sentire" il metallo prima ancora di lavorarlo.',
+        'Raccogliendo questo prezioso testimone, Savino di Cugno ha consolidato il proprio percorso professionale con oltre 30 anni di attività diretta nel settore della meccanica, della metallurgia e della progettazione. Questa profonda conoscenza tecnica, maturata quotidianamente "sul campo", rappresenta oggi il cuore pulsante dell\'azienda e la garanzia di affidabilità per ogni nostro cliente.',
     },
     {
-      year: '2008',
-      title: 'Nasce EDILMEC',
+      icon: Lightbulb,
+      title: 'La Visione: Dall\'Idea alla Messa in Opera',
       description:
-        "Fonda l'azienda portando con sé l'esperienza pratica del tornitore programmatore CNC e del meccanico generale.",
+        'Sotto la guida esperta di Savino di Cugno, la EDILMEC SAS si distingue per la capacità di governare l\'intero processo produttivo. Non siamo semplici esecutori, ma partner strategici che accompagnano il progetto in ogni sua fase.',
     },
-    {
-      year: 'Oggi',
-      title: "L'eccellenza artigianale",
-      description:
-        "EDILMEC è oggi un punto di riferimento per chi cerca qualità, precisione e la capacità di risolvere problemi che altri non sanno affrontare.",
-    },
+  ];
+
+  const processSteps = [
+    'Progettazione tecnica avanzata',
+    'Lavorazione dei metalli con standard qualitativi elevati',
+    'Realizzazione e montaggio finale a regola d\'arte',
   ];
 
   const companyInfo = [
     { icon: Building2, label: 'Azienda', value: 'Edilmec S.A.S. di Di Cugno Savino & C.' },
-    { icon: MapPin, label: 'Sede Operativa', value: 'Trani (BT), Piazza Albanese Int. 2' },
+    { icon: MapPin, label: 'Sede Operativa', value: 'Via Giorgio Castriota Skanderbeg, 76125 Trani (BT)' },
     { icon: Wrench, label: 'Specializzazione Esclusiva', value: 'Ripristino sedi su materiali non saldabili tramite "Riporto a Freddo" (Spruzzatura Termica)' },
     { icon: Cpu, label: 'Core Business', value: 'Lavorazioni meccaniche di precisione, Tornitura, Fresatura e manutenzione impianti' },
   ];
@@ -54,23 +54,23 @@ const Story = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-4xl mx-auto mb-16"
         >
-          <span className="inline-flex items-center gap-2 text-orange-safety font-body text-sm uppercase tracking-[0.3em] mb-4">
-            <span className="w-8 h-0.5 bg-orange-safety" />
+          <span className="inline-flex items-center gap-2 text-red-edilmec font-body text-sm uppercase tracking-[0.3em] mb-4">
+            <span className="w-8 h-0.5 bg-red-edilmec" />
             Chi Siamo
-            <span className="w-8 h-0.5 bg-orange-safety" />
+            <span className="w-8 h-0.5 bg-red-edilmec" />
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-foreground font-bold mb-6">
-            L'Uomo e la <span className="text-orange-safety">Macchina</span>
+            EDILMEC SAS: Una Storia di <span className="text-red-edilmec">Passione, Progetto e Precisione</span>
           </h2>
           <p className="text-muted-foreground text-lg font-body leading-relaxed">
-            Dalle mani sporche di olio alla guida dell'azienda. La storia di Savino Di Cugno
-            è quella di chi capisce il metallo come solo chi lo ha lavorato per anni può fare.
+            Oggi, la EDILMEC SAS è la sintesi perfetta tra l'abilità artigianale di un tempo 
+            e le più moderne tecnologie industriali.
           </p>
         </motion.div>
 
-        {/* Company Identity Card - Entity Optimization for AI/SEO */}
+        {/* Company Identity Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -80,7 +80,7 @@ const Story = () => {
           itemType="https://schema.org/LocalBusiness"
         >
           <h3 className="font-display text-2xl text-white font-bold mb-6 text-center">
-            Scheda <span className="text-orange-safety">Identità</span> Aziendale
+            Scheda <span className="text-red-edilmec">Identità</span> Aziendale
           </h3>
           <div className="grid md:grid-cols-2 gap-6">
             {companyInfo.map((info, index) => (
@@ -88,8 +88,8 @@ const Story = () => {
                 key={index} 
                 className="flex items-start gap-4 bg-white/5 rounded-lg p-4 border border-white/10"
               >
-                <div className="w-12 h-12 rounded-lg bg-orange-safety/20 flex items-center justify-center flex-shrink-0">
-                  <info.icon className="w-6 h-6 text-orange-safety" />
+                <div className="w-12 h-12 rounded-lg bg-red-edilmec/20 flex items-center justify-center flex-shrink-0">
+                  <info.icon className="w-6 h-6 text-red-edilmec" />
                 </div>
                 <div>
                   <p className="font-body text-steel-light text-sm uppercase tracking-wider mb-1">
@@ -104,7 +104,7 @@ const Story = () => {
           </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Image Column */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -130,47 +130,68 @@ const Story = () => {
                 transition={{ duration: 0.6, delay: 0.6 }}
                 className="absolute -bottom-6 -right-6 bg-navy text-white p-6 rounded-lg shadow-heavy max-w-xs hidden md:block"
               >
-                <Quote className="w-8 h-8 text-orange-safety mb-3" />
+                <Quote className="w-8 h-8 text-red-edilmec mb-3" />
                 <p className="font-body text-sm leading-relaxed italic">
                   "Ogni pezzo che creo porta con sé anni di esperienza. Quando altri dicono 'impossibile', noi diciamo 'ci pensiamo noi'."
                 </p>
-                <p className="mt-3 font-display text-orange-safety text-sm">
+                <p className="mt-3 font-display text-red-edilmec text-sm">
                   — Savino Di Cugno
                 </p>
               </motion.div>
 
-              {/* Orange accent */}
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-orange-safety/20 rounded-lg -z-10" />
+              {/* Red accent */}
+              <div className="absolute -top-4 -left-4 w-24 h-24 bg-red-edilmec/20 rounded-lg -z-10" />
             </div>
           </motion.div>
 
-          {/* Timeline Column */}
+          {/* Story Chapters Column */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="space-y-8"
           >
-            {timelineItems.map((item, index) => (
+            {storyChapters.map((chapter, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.15 }}
-                className="relative pl-8 border-l-2 border-steel/30 hover:border-orange-safety transition-colors duration-300"
+                className="relative pl-8 border-l-2 border-steel/30 hover:border-red-edilmec transition-colors duration-300"
               >
-                <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-orange-safety" />
-                <span className="font-display text-orange-safety text-sm uppercase tracking-wider">
-                  {item.year}
-                </span>
-                <h3 className="font-display text-xl text-foreground font-semibold mt-1 mb-2">
-                  {item.title}
+                <div className="absolute -left-5 top-0 w-10 h-10 rounded-full bg-background border-2 border-red-edilmec flex items-center justify-center">
+                  <chapter.icon className="w-5 h-5 text-red-edilmec" />
+                </div>
+                <h3 className="font-display text-xl text-foreground font-semibold mt-1 mb-3">
+                  {chapter.title}
                 </h3>
                 <p className="font-body text-muted-foreground leading-relaxed">
-                  {item.description}
+                  {chapter.description}
                 </p>
               </motion.div>
             ))}
+
+            {/* Process Steps */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.95 }}
+              className="bg-red-edilmec/10 rounded-lg p-6 border border-red-edilmec/20"
+            >
+              <h4 className="font-display text-lg text-foreground font-semibold mb-4">
+                Le nostre fasi:
+              </h4>
+              <ul className="space-y-3">
+                {processSteps.map((step, index) => (
+                  <li key={index} className="flex items-center gap-3">
+                    <span className="w-6 h-6 rounded-full bg-red-edilmec text-white flex items-center justify-center text-sm font-bold">
+                      {index + 1}
+                    </span>
+                    <span className="font-body text-muted-foreground">{step}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </motion.div>
         </div>
 
@@ -185,7 +206,7 @@ const Story = () => {
             {
               icon: Heart,
               title: 'Passione',
-              description: "L'amore per la meccanica che nasce dalla gavetta.",
+              description: "L'amore per la meccanica tramandato da tre generazioni.",
             },
             {
               icon: Target,
@@ -202,8 +223,8 @@ const Story = () => {
               key={index}
               className="bg-background p-8 rounded-lg shadow-industrial hover:shadow-heavy transition-shadow duration-300 text-center group"
             >
-              <div className="w-16 h-16 mx-auto mb-4 rounded-lg bg-navy/10 flex items-center justify-center group-hover:bg-orange-safety/10 transition-colors duration-300">
-                <value.icon className="w-8 h-8 text-navy group-hover:text-orange-safety transition-colors duration-300" />
+              <div className="w-16 h-16 mx-auto mb-4 rounded-lg bg-navy/10 flex items-center justify-center group-hover:bg-red-edilmec/10 transition-colors duration-300">
+                <value.icon className="w-8 h-8 text-navy group-hover:text-red-edilmec transition-colors duration-300" />
               </div>
               <h4 className="font-display text-lg text-foreground font-semibold mb-2">
                 {value.title}

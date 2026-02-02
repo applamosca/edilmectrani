@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import logoEdilmec from '@/assets/logo-edilmec.jpeg';
 
 const navLinks = [
   { href: '#home', label: 'Home' },
@@ -42,8 +43,8 @@ const Header = () => {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-navy-deep/95 backdrop-blur-md shadow-heavy py-3'
-            : 'bg-transparent py-5'
+            ? 'bg-black shadow-heavy py-2'
+            : 'bg-black py-3'
         }`}
       >
         <div className="container flex items-center justify-between">
@@ -54,19 +55,13 @@ const Header = () => {
               e.preventDefault();
               scrollToSection('#home');
             }}
-            className="flex items-center gap-3"
+            className="flex items-center"
           >
-            <div className="w-12 h-12 bg-orange-safety rounded flex items-center justify-center">
-              <span className="font-display text-white text-xl font-bold">E</span>
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="font-display text-white text-xl font-semibold tracking-wide">
-                EDILMEC
-              </h1>
-              <p className="text-steel-light text-xs uppercase tracking-widest">
-                Meccanica di Precisione
-              </p>
-            </div>
+            <img
+              src={logoEdilmec}
+              alt="EDILMEC S.A.S. - Officina Meccanica di Precisione"
+              className="h-14 md:h-16 w-auto"
+            />
           </a>
 
           {/* Desktop Navigation */}
@@ -82,7 +77,7 @@ const Header = () => {
                 className="text-white/80 hover:text-white font-body text-sm uppercase tracking-wider transition-colors duration-200 relative group"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-safety transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-edilmec transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </nav>
@@ -123,7 +118,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 lg:hidden bg-navy-deep pt-24"
+            className="fixed inset-0 z-40 lg:hidden bg-black pt-24"
           >
             <nav className="container flex flex-col gap-6 py-8">
               {navLinks.map((link, index) => (

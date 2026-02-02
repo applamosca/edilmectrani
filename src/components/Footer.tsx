@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Facebook, Instagram, Linkedin, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -6,14 +6,14 @@ const Footer = () => {
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=Salve,%20vorrei%20informazioni%20sui%20vostri%20servizi%20di%20lavorazione%20meccanica.`;
 
   return (
-    <footer className="bg-navy-deep text-white">
+    <footer className="bg-black text-white">
       {/* Main Footer */}
       <div className="container py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-orange-safety rounded flex items-center justify-center">
+              <div className="w-12 h-12 bg-red-edilmec rounded flex items-center justify-center">
                 <span className="font-display text-white text-xl font-bold">E</span>
               </div>
               <div>
@@ -30,7 +30,7 @@ const Footer = () => {
               costruzioni meccaniche, ricostruzione di pezzi fuori produzione e 
               <strong className="text-white"> Riporto a Freddo</strong> (Spruzzatura Termica) 
               per il recupero di materiali non saldabili.
-              <strong className="text-orange-safety"> "Se non esiste più, noi lo costruiamo."</strong>
+              <strong className="text-red-edilmec"> "Se non esiste più, noi lo costruiamo."</strong>
             </p>
             {/* Social Links */}
             <div className="flex gap-4">
@@ -77,7 +77,7 @@ const Footer = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="block font-body text-steel-light hover:text-orange-safety transition-colors duration-200"
+                  className="block font-body text-steel-light hover:text-red-edilmec transition-colors duration-200"
                 >
                   {link.label}
                 </a>
@@ -90,26 +90,26 @@ const Footer = () => {
             <h4 className="font-display text-lg font-semibold mb-6">Contatti</h4>
             <address className="not-italic space-y-4">
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-orange-safety flex-shrink-0 mt-1" />
+                <MapPin className="w-5 h-5 text-red-edilmec flex-shrink-0 mt-1" />
                 <div className="font-body text-steel-light text-sm">
-                  <p>Piazza Albanese Int. 2 - P.S1 36</p>
+                  <p>Via Giorgio Castriota Skanderbeg</p>
                   <p>76125 - TRANI (BT)</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-orange-safety flex-shrink-0" />
+                <Phone className="w-5 h-5 text-red-edilmec flex-shrink-0" />
                 <a
                   href="tel:+393495360705"
-                  className="font-body text-steel-light text-sm hover:text-orange-safety transition-colors"
+                  className="font-body text-steel-light text-sm hover:text-red-edilmec transition-colors"
                 >
                   349 5360705
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-orange-safety flex-shrink-0" />
+                <Mail className="w-5 h-5 text-red-edilmec flex-shrink-0" />
                 <a
                   href="mailto:edilmectrani@gmail.com"
-                  className="font-body text-steel-light text-sm hover:text-orange-safety transition-colors"
+                  className="font-body text-steel-light text-sm hover:text-red-edilmec transition-colors"
                 >
                   edilmectrani@gmail.com
                 </a>
@@ -151,7 +151,7 @@ const Footer = () => {
                   href="https://assistenzabat.it/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-steel-light hover:text-orange-safety transition-colors"
+                  className="text-steel-light hover:text-red-edilmec transition-colors"
                 >
                   Antonio Danzi
                 </a>
@@ -179,7 +179,7 @@ const Footer = () => {
             vatID: 'IT05134830727',
             address: {
               '@type': 'PostalAddress',
-              streetAddress: 'Piazza Albanese Int. 2 - P.S1 36',
+              streetAddress: 'Via Giorgio Castriota Skanderbeg',
               addressLocality: 'Trani',
               addressRegion: 'BT',
               postalCode: '76125',
