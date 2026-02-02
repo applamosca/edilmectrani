@@ -119,6 +119,8 @@ const Story = () => {
                   src={savinoCnc}
                   alt="Savino Di Cugno al lavoro con il tornio CNC"
                   className="w-full h-auto"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/50 to-transparent" />
               </div>
