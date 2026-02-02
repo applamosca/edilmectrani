@@ -47,18 +47,16 @@ const Header = () => {
         }`}
       >
         <div className="container flex items-center justify-between">
-          {/* Logo Text */}
+          {/* Home Link */}
           <a
             href="#home"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection('#home');
             }}
-            className="flex items-center"
+            className="text-white font-display text-sm uppercase tracking-wider hover:text-red-edilmec transition-colors"
           >
-            <span className="font-display text-xl md:text-2xl font-bold text-white tracking-wider">
-              EDILMEC<span className="text-red-edilmec">.</span>
-            </span>
+            Home
           </a>
 
           {/* Desktop Navigation */}
