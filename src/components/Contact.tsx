@@ -122,17 +122,17 @@ const Contact = () => {
               </div>
             ))}
 
-            {/* Map placeholder */}
+            {/* Map */}
             <div className="relative rounded-lg overflow-hidden h-48 bg-navy-light">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3016.0557!2d16.4163!3d41.2769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDE2JzM2LjgiTiAxNsKwMjQnNTguNyJF!5e0!3m2!1sit!2sit!4v1600000000000!5m2!1sit!2sit"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3016.5!2d16.416306!3d41.276889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDE2JzM2LjgiTiAxNsKwMjQnNTguNyJF!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Mappa EDILMEC Trani"
+                title="Mappa EDILMEC - Via Giorgio Castriota Skanderbeg, Trani"
               />
             </div>
           </motion.div>
