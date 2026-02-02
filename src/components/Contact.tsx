@@ -45,8 +45,8 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Indirizzo',
-      content: 'Via Giorgio Castriota Skanderbeg',
-      subcontent: '76125 - TRANI (BT)',
+      content: 'Via Giorgio Castriota Skanderbeg 15',
+      subcontent: 'Trani, Puglia BAT',
     },
     {
       icon: Phone,
@@ -125,14 +125,14 @@ const Contact = () => {
             {/* Map */}
             <div className="relative rounded-lg overflow-hidden h-48 bg-navy-light">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3016.5!2d16.416306!3d41.276889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDE2JzM2LjgiTiAxNsKwMjQnNTguNyJF!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit"
+                src="https://www.google.com/maps/embed?pb=!4v1770062853833!6m8!1m7!1s6b6Ah25bdJNanEyt7hfQAQ!2m2!1d41.28269283042127!2d16.3970624169135!3f315.5976708629224!4f0.40963636398043946!5f0.7820865974627469"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Mappa EDILMEC - Via Giorgio Castriota Skanderbeg, Trani"
+                title="Mappa EDILMEC - Via Giorgio Castriota Skanderbeg 15, Trani"
               />
             </div>
           </motion.div>
