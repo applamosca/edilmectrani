@@ -135,6 +135,17 @@ const Contact = () => {
                 title="Mappa EDILMEC - Via Giorgio Castriota Skanderbeg 15, Trani"
               />
             </div>
+
+            {/* Navigation Link */}
+            <a
+              href="https://www.google.com/maps/dir//Via+Giorgio+Castriota+Skanderbeg+15,+76125+Trani+BT,+Italia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 p-3 rounded-lg bg-red-edilmec hover:bg-red-edilmec/90 text-white font-body font-medium transition-colors duration-300"
+            >
+              <MapPin className="w-5 h-5" />
+              Apri in Google Maps
+            </a>
           </motion.div>
 
           {/* Contact Form */}
