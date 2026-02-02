@@ -45,7 +45,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Indirizzo',
-      content: 'Piazza Albanese Int. 2 - P.S1 36',
+      content: 'Via Giorgio Castriota Skanderbeg',
       subcontent: '76125 - TRANI (BT)',
     },
     {
@@ -71,8 +71,8 @@ const Contact = () => {
   return (
     <section id="contatti" className="section-padding bg-navy relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-orange-safety/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-safety/10 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl" />
+      <div className="absolute top-0 left-0 w-96 h-96 bg-red-edilmec/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-edilmec/10 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl" />
 
       <div className="container relative" ref={ref}>
         {/* Section Header */}
@@ -82,13 +82,13 @@ const Contact = () => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="inline-flex items-center gap-2 text-orange-safety font-body text-sm uppercase tracking-[0.3em] mb-4">
-            <span className="w-8 h-0.5 bg-orange-safety" />
+          <span className="inline-flex items-center gap-2 text-red-edilmec font-body text-sm uppercase tracking-[0.3em] mb-4">
+            <span className="w-8 h-0.5 bg-red-edilmec" />
             Contattaci
-            <span className="w-8 h-0.5 bg-orange-safety" />
+            <span className="w-8 h-0.5 bg-red-edilmec" />
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-white font-bold mb-6">
-            Richiedi un <span className="text-orange-safety">Preventivo</span>
+            Richiedi un <span className="text-red-edilmec">Preventivo</span>
           </h2>
           <p className="text-steel-light text-lg font-body leading-relaxed">
             Hai un pezzo introvabile o un progetto speciale? Contattaci senza impegno.
@@ -109,8 +109,8 @@ const Contact = () => {
                 key={index}
                 className="flex items-start gap-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors duration-300"
               >
-                <div className="w-12 h-12 rounded-lg bg-orange-safety/20 flex items-center justify-center flex-shrink-0">
-                  <item.icon className="w-6 h-6 text-orange-safety" />
+                <div className="w-12 h-12 rounded-lg bg-red-edilmec/20 flex items-center justify-center flex-shrink-0">
+                  <item.icon className="w-6 h-6 text-red-edilmec" />
                 </div>
                 <div>
                   <h4 className="font-display text-white font-semibold mb-1">
@@ -164,7 +164,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     placeholder="Mario Rossi"
-                    className="border-border focus:border-orange-safety"
+                    className="border-border focus:border-red-edilmec"
                   />
                 </div>
                 <div className="space-y-2">
@@ -179,7 +179,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     placeholder="mario@esempio.it"
-                    className="border-border focus:border-orange-safety"
+                    className="border-border focus:border-red-edilmec"
                   />
                 </div>
               </div>
@@ -195,7 +195,7 @@ const Contact = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+39 333 1234567"
-                  className="border-border focus:border-orange-safety"
+                  className="border-border focus:border-red-edilmec"
                 />
               </div>
 
@@ -211,7 +211,7 @@ const Contact = () => {
                   required
                   placeholder="Descrivi il pezzo che ti serve, allega eventuali dettagli su materiali, dimensioni o urgenza..."
                   rows={5}
-                  className="border-border focus:border-orange-safety resize-none"
+                  className="border-border focus:border-red-edilmec resize-none"
                 />
               </div>
 

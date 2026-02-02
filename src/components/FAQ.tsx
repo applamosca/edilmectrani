@@ -22,7 +22,7 @@ const faqs = [
   {
     question: 'Dove si trova l\'officina Edilmec?',
     answer:
-      "L'officina meccanica si trova a Trani (BT), in Piazza Albanese Int. 2, operativa per le province di Barletta-Andria-Trani e Bari. Serviamo tutta la Puglia e per progetti importanti lavoriamo anche a livello nazionale con spedizione del prodotto finito.",
+      "L'officina meccanica si trova a Trani (BT), in Via Giorgio Castriota Skanderbeg, operativa per le province di Barletta-Andria-Trani e Bari. Serviamo tutta la Puglia e per progetti importanti lavoriamo anche a livello nazionale con spedizione del prodotto finito.",
   },
   {
     question: 'Chi realizza pezzi meccanici fuori produzione a Trani?',
@@ -75,13 +75,13 @@ const FAQ = () => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="inline-flex items-center gap-2 text-orange-safety font-body text-sm uppercase tracking-[0.3em] mb-4">
-            <span className="w-8 h-0.5 bg-orange-safety" />
+          <span className="inline-flex items-center gap-2 text-red-edilmec font-body text-sm uppercase tracking-[0.3em] mb-4">
+            <span className="w-8 h-0.5 bg-red-edilmec" />
             Domande Frequenti
-            <span className="w-8 h-0.5 bg-orange-safety" />
+            <span className="w-8 h-0.5 bg-red-edilmec" />
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-foreground font-bold mb-6">
-            Hai <span className="text-orange-safety">Domande</span>?
+            Hai <span className="text-red-edilmec">Domande</span>?
           </h2>
           <p className="text-muted-foreground text-lg font-body leading-relaxed">
             Ecco le risposte alle domande più comuni sui nostri servizi.
@@ -103,7 +103,7 @@ const FAQ = () => {
                 value={`item-${index}`}
                 className="bg-background rounded-lg shadow-industrial border-none px-6 data-[state=open]:shadow-heavy transition-shadow duration-300"
               >
-                <AccordionTrigger className="font-display text-foreground text-left text-lg hover:text-orange-safety hover:no-underline py-6">
+                <AccordionTrigger className="font-display text-foreground text-left text-lg hover:text-red-edilmec hover:no-underline py-6">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="font-body text-muted-foreground text-base leading-relaxed pb-6">

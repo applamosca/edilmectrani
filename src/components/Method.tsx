@@ -52,13 +52,13 @@ const Method = () => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <span className="inline-flex items-center gap-2 text-orange-safety font-body text-sm uppercase tracking-[0.3em] mb-4">
-            <span className="w-8 h-0.5 bg-orange-safety" />
+          <span className="inline-flex items-center gap-2 text-red-edilmec font-body text-sm uppercase tracking-[0.3em] mb-4">
+            <span className="w-8 h-0.5 bg-red-edilmec" />
             Il Metodo
-            <span className="w-8 h-0.5 bg-orange-safety" />
+            <span className="w-8 h-0.5 bg-red-edilmec" />
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-foreground font-bold mb-6">
-            Dal <span className="text-orange-safety">Problema</span> alla Soluzione
+            Dal <span className="text-red-edilmec">Problema</span> alla Soluzione
           </h2>
           <p className="text-muted-foreground text-lg font-body leading-relaxed">
             Un processo semplice e trasparente che ti accompagna
@@ -74,7 +74,7 @@ const Method = () => {
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : {}}
               transition={{ duration: 1.5, delay: 0.5 }}
-              className="h-full bg-orange-safety origin-left"
+              className="h-full bg-red-edilmec origin-left"
             />
           </div>
 
@@ -92,10 +92,10 @@ const Method = () => {
                   {/* Number and Icon */}
                   <div className="flex items-center gap-4 mb-6">
                     <div className="relative">
-                      <div className="w-16 h-16 rounded-full bg-navy flex items-center justify-center group-hover:bg-orange-safety transition-colors duration-300">
+                      <div className="w-16 h-16 rounded-full bg-navy flex items-center justify-center group-hover:bg-red-edilmec transition-colors duration-300">
                         <step.icon className="w-7 h-7 text-white" />
                       </div>
-                      <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-orange-safety text-white font-display text-sm flex items-center justify-center font-bold">
+                      <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-red-edilmec text-white font-display text-sm flex items-center justify-center font-bold">
                         {step.number}
                       </span>
                     </div>
@@ -108,7 +108,7 @@ const Method = () => {
                   <p className="font-body text-muted-foreground leading-relaxed mb-4">
                     {step.description}
                   </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-body text-orange-safety">
+                  <span className="inline-flex items-center gap-2 text-sm font-body text-red-edilmec">
                     <CheckCircle2 className="w-4 h-4" />
                     {step.highlight}
                   </span>
@@ -117,7 +117,7 @@ const Method = () => {
                 {/* Arrow - Desktop */}
                 {index < steps.length - 1 && (
                   <div className="hidden lg:flex absolute top-20 -right-3 z-10">
-                    <ArrowRight className="w-6 h-6 text-orange-safety" />
+                    <ArrowRight className="w-6 h-6 text-red-edilmec" />
                   </div>
                 )}
               </motion.div>
