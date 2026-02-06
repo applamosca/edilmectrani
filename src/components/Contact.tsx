@@ -45,8 +45,8 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Indirizzo',
-      content: 'Via Giorgio Castriota Skanderbeg 15',
-      subcontent: 'Trani, Puglia BAT',
+      content: 'Via Giorgio Castriota Skanderbeg, 15',
+      subcontent: '76125 - Trani (BT)',
     },
     {
       icon: Phone,
