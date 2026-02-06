@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import logoEdilmecHero from '@/assets/logo-edilmec-hero-clean.jpeg';
+import logoEdilmecHero from '@/assets/logo-edilmec-hero-red.jpeg';
 
 const Hero = () => {
   const scrollToContacts = () => {
