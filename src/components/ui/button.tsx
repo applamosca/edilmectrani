@@ -17,8 +17,8 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         // Edilmec custom variants
         cta: "bg-red-edilmec text-white hover:bg-red-edilmec-hover shadow-lg hover:shadow-xl hover:-translate-y-0.5",
-        hero: "bg-red-edilmec text-white hover:bg-red-edilmec-hover text-lg px-8 py-6 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
-        heroOutline: "border-2 border-white text-white hover:bg-white hover:text-navy-deep text-lg px-8 py-6 transition-all duration-300",
+        hero: "bg-red-edilmec text-white hover:bg-red-edilmec-hover text-lg md:text-xl px-10 md:px-12 py-5 md:py-7 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 rounded-lg",
+        heroOutline: "border-2 border-white text-white hover:bg-white hover:text-navy-deep text-lg md:text-xl px-10 md:px-12 py-5 md:py-7 transition-all duration-300 rounded-lg",
         steel: "bg-steel text-white hover:bg-steel-dark",
         navy: "bg-navy text-white hover:bg-navy-light",
       },
