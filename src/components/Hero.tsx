@@ -35,12 +35,6 @@ const Hero = () => {
           alt="EDILMEC S.A.S. - Officina Meccanica di Precisione"
           className="w-full max-w-md md:max-w-xl lg:max-w-2xl h-auto object-contain px-4"
         />
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold tracking-wider text-red-edilmec uppercase">
-          EDILMEC
-        </h1>
-        <p className="text-lg md:text-2xl lg:text-3xl font-body text-white/80 tracking-widest uppercase">
-          Officina Meccanica di Precisione
-        </p>
       </motion.div>
 
       {/* CTAs - Below the logo */}
