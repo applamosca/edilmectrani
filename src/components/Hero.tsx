@@ -33,7 +33,7 @@ const Hero = () => {
         <img
           src={logoEdilmecHero}
           alt="EDILMEC S.A.S. - Officina Meccanica di Precisione"
-          className="w-full max-w-md md:max-w-xl lg:max-w-2xl h-auto object-contain px-4"
+          className="w-full max-w-lg md:max-w-3xl lg:max-w-4xl h-auto object-contain px-4"
         />
       </motion.div>
 
