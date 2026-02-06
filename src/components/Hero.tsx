@@ -28,13 +28,19 @@ const Hero = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
-        className="flex items-center justify-center"
+        className="flex flex-col items-center justify-center gap-6"
       >
         <img
           src={logoEdilmecHero}
           alt="EDILMEC S.A.S. - Officina Meccanica di Precisione"
-          className="w-full max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain px-4"
+          className="w-full max-w-md md:max-w-xl lg:max-w-2xl h-auto object-contain px-4"
         />
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold tracking-wider text-red-edilmec uppercase">
+          EDILMEC
+        </h1>
+        <p className="text-lg md:text-2xl lg:text-3xl font-body text-white/80 tracking-widest uppercase">
+          Officina Meccanica di Precisione
+        </p>
       </motion.div>
 
       {/* CTAs - Below the logo */}
@@ -42,7 +48,7 @@ const Hero = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="flex flex-col sm:flex-row gap-6 mt-12"
+        className="flex flex-col sm:flex-row gap-6 mt-10"
       >
         <Button variant="hero" onClick={scrollToContacts}>
           Richiedi Preventivo Gratuito
