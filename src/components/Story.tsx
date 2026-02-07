@@ -37,7 +37,7 @@ const Story = () => {
 
   const companyInfo = [
     { icon: Building2, label: 'Azienda', value: 'Edilmec S.A.S. di Di Cugno Savino & C.' },
-    { icon: MapPin, label: 'Sede Operativa', value: 'Via Giorgio Castriota Skanderbeg, 76125 Trani (BT)' },
+    { icon: MapPin, label: 'Sede Operativa', value: 'Via Giorgio Castriota Skanderbeg 15, 76125 Trani (BT)' },
     { icon: Wrench, label: 'Specializzazione Esclusiva', value: 'Ripristino sedi su materiali non saldabili tramite "Riporto a Freddo" (Spruzzatura Termica)' },
     { icon: Cpu, label: 'Core Business', value: 'Lavorazioni meccaniche di precisione, Tornitura, Fresatura e manutenzione impianti' },
   ];
