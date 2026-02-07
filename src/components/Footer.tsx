@@ -92,7 +92,7 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-red-edilmec flex-shrink-0 mt-1" />
                 <div className="font-body text-steel-light text-sm">
-                  <p>Via Giorgio Castriota Skanderbeg</p>
+                  <p>Via Giorgio Castriota Skanderbeg, 15</p>
                   <p>76125 - TRANI (BT)</p>
                 </div>
               </div>
@@ -179,7 +179,7 @@ const Footer = () => {
             vatID: 'IT05134830727',
             address: {
               '@type': 'PostalAddress',
-              streetAddress: 'Via Giorgio Castriota Skanderbeg',
+              streetAddress: 'Via Giorgio Castriota Skanderbeg, 15',
               addressLocality: 'Trani',
               addressRegion: 'BT',
               postalCode: '76125',

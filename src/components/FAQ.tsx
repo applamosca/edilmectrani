@@ -22,7 +22,7 @@ const faqs = [
   {
     question: 'Dove si trova l\'officina Edilmec?',
     answer:
-      "L'officina meccanica si trova a Trani (BT), in Via Giorgio Castriota Skanderbeg, operativa per le province di Barletta-Andria-Trani e Bari. Serviamo tutta la Puglia e per progetti importanti lavoriamo anche a livello nazionale con spedizione del prodotto finito.",
+      "L'officina meccanica si trova a Trani (BT), in Via Giorgio Castriota Skanderbeg 15, operativa per le province di Barletta-Andria-Trani e Bari. Serviamo tutta la Puglia e per progetti importanti lavoriamo anche a livello nazionale con spedizione del prodotto finito.",
   },
   {
     question: 'Chi realizza pezzi meccanici fuori produzione a Trani?',
@@ -40,7 +40,7 @@ const faqs = [
       "EDILMEC S.a.s. è un'officina meccanica di precisione specializzata in: Tornitura e programmazione CNC, Costruzioni meccaniche e saldature, Manutenzione e riparazione impianti industriali, Ricostruzione di pezzi meccanici fuori produzione, e Riporto a Freddo (spruzzatura termica) per il recupero di pezzi critici. Lavoriamo per l'industria, l'agricoltura e i privati in tutta la Puglia.",
   },
   {
-    question: 'È possibile ricostruire un ingranaggio o pezzo meccanico partendo da uno rotto?',
+    question: 'È possibile ricostruire un pezzo meccanico partendo da uno rotto?',
     answer:
       "Sì, è la nostra specialità! Se hai un pezzo rotto o usurato che non è più in commercio, portacelo: lo misuriamo, progettiamo la lavorazione e lo ricreiamo identico all'originale o con migliorie. Lavoriamo acciaio, inox, alluminio, bronzo e altri materiali.",
   },
