@@ -25,7 +25,7 @@ const CAPTIONS = [
 
 const StoryGallery = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [photos, setPhotos] = useState<OriginPhoto[]>([]);
   const [loading, setLoading] = useState(true);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -86,9 +86,11 @@ const StoryGallery = () => {
     return () => window.removeEventListener('keydown', handler);
   }, [lightboxIndex, photos.length]);
 
+  const isReady = !loading && photos.length > 0;
+
   if (loading) {
     return (
-      <div className="flex justify-center py-12">
+      <div ref={ref} className="flex justify-center py-12">
         <div className="w-8 h-8 border-3 border-red-edilmec border-t-transparent rounded-full animate-spin" />
       </div>
     );
@@ -101,7 +103,7 @@ const StoryGallery = () => {
       {/* Section intro */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ duration: 0.7 }}
         className="text-center max-w-3xl mx-auto mb-10 mt-20"
       >
@@ -122,7 +124,7 @@ const StoryGallery = () => {
       {/* Photo grid - vintage feel */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.7, delay: 0.2 }}
         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
       >
@@ -130,7 +132,7 @@ const StoryGallery = () => {
           <motion.div
             key={photo.name}
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            animate={isReady ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.5, delay: Math.min(index * 0.08, 0.6) }}
             className={`group relative overflow-hidden rounded-lg cursor-pointer border-2 border-transparent hover:border-red-edilmec/40 transition-all duration-500 ${
               index === 0 ? 'col-span-2 row-span-2' : ''
