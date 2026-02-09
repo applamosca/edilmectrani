@@ -16,7 +16,7 @@ const CAPTIONS = [
   'Io e mio nonno – dove tutto è iniziato',
   'I primi colleghi, i primi passi',
   'Le mani che mi hanno insegnato il mestiere',
-  'In officina con il nonno',
+  'Io e un collega delle prime armi',
   'La squadra delle origini',
   'I primi lavori, le prime soddisfazioni',
   'Crescere tra trucioli e passione',
