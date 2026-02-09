@@ -3,6 +3,7 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Quote, Award, Heart, Target, Building2, MapPin, Wrench, Cpu, Users, Lightbulb, Factory } from 'lucide-react';
 import savinoCnc from '@/assets/savino-cnc.jpg';
+import StoryGallery from './StoryGallery';
 
 const Story = () => {
   const ref = useRef(null);
@@ -237,6 +238,9 @@ const Story = () => {
             </div>
           ))}
         </motion.div>
+
+        {/* Origin Photos */}
+        <StoryGallery />
       </div>
     </section>
   );
