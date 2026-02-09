@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
 import { X, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
+import { getThumbnailUrl, getLightboxUrl } from '@/lib/image-utils';
 
 const BUCKET = 'gallery';
 const FOLDER = 'fotoinizi';
@@ -141,7 +142,7 @@ const StoryGallery = () => {
           >
             <div className={`relative w-full ${index === 0 ? 'h-64 md:h-[420px]' : 'h-40 md:h-56'}`}>
               <img
-                src={photo.url}
+                src={getThumbnailUrl(photo.url, index === 0)}
                 alt="Foto storica Edilmec - Le origini"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105 sepia-[.15] group-hover:sepia-0"
@@ -198,7 +199,7 @@ const StoryGallery = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
-              src={photos[lightboxIndex].url}
+              src={getLightboxUrl(photos[lightboxIndex].url)}
               alt="Foto storica Edilmec"
               className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
