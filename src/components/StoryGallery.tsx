@@ -40,8 +40,12 @@ const StoryGallery = () => {
 
         if (!files) return;
 
+        const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.avif'];
         const imageFiles = files.filter(
-          (f) => f.metadata?.mimetype?.startsWith('image/')
+          (f) => {
+            const ext = f.name.toLowerCase();
+            return imageExtensions.some(e => ext.endsWith(e)) || f.metadata?.mimetype?.startsWith('image/');
+          }
         );
 
         const result: OriginPhoto[] = imageFiles.map((file, index) => {
