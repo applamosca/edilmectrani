@@ -4,6 +4,7 @@ import Story from '@/components/Story';
 import Services from '@/components/Services';
 import ParcoMacchine from '@/components/ParcoMacchine';
 import RiportoFreddo from '@/components/RiportoFreddo';
+import Gallery from '@/components/Gallery';
 import Method from '@/components/Method';
 import FAQ from '@/components/FAQ';
 import Contact from '@/components/Contact';
@@ -18,6 +19,7 @@ const Index = () => {
       <Services />
       <ParcoMacchine />
       <RiportoFreddo />
+      <Gallery />
       <Method />
       <FAQ />
       <Contact />
