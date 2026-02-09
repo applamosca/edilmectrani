@@ -9,7 +9,19 @@ const FOLDER = 'fotoinizi';
 interface OriginPhoto {
   name: string;
   url: string;
+  caption: string;
 }
+
+const CAPTIONS = [
+  'Io e mio nonno – dove tutto è iniziato',
+  'I primi colleghi, i primi passi',
+  'Le mani che mi hanno insegnato il mestiere',
+  'In officina con il nonno',
+  'La squadra delle origini',
+  'I primi lavori, le prime soddisfazioni',
+  'Crescere tra trucioli e passione',
+  'Le radici della nostra storia',
+];
 
 const StoryGallery = () => {
   const ref = useRef(null);
@@ -32,9 +44,9 @@ const StoryGallery = () => {
           (f) => f.metadata?.mimetype?.startsWith('image/')
         );
 
-        const result: OriginPhoto[] = imageFiles.map((file) => {
+        const result: OriginPhoto[] = imageFiles.map((file, index) => {
           const { data } = supabase.storage.from(BUCKET).getPublicUrl(`${FOLDER}/${file.name}`);
-          return { name: file.name, url: data.publicUrl };
+          return { name: file.name, url: data.publicUrl, caption: CAPTIONS[index % CAPTIONS.length] };
         });
 
         setPhotos(result);
@@ -130,9 +142,16 @@ const StoryGallery = () => {
               />
               {/* Warm vintage overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/60 via-transparent to-muted/10 group-hover:from-navy-deep/40 transition-all duration-500" />
-              {/* Hover icon */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <Camera className="w-8 h-8 text-white drop-shadow-lg" />
+              {/* Hover icon + caption */}
+              <div className="absolute inset-0 flex flex-col items-center justify-end pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <Camera className="w-6 h-6 text-white drop-shadow-lg mb-2" />
+                <span className="text-white text-xs md:text-sm font-body text-center px-3 drop-shadow-lg">
+                  {photo.caption}
+                </span>
+              </div>
+              {/* Always-visible caption on mobile */}
+              <div className="absolute bottom-0 left-0 right-0 bg-navy-deep/70 px-2 py-1.5 md:hidden">
+                <span className="text-white text-xs font-body">{photo.caption}</span>
               </div>
             </div>
           </motion.div>
@@ -178,8 +197,9 @@ const StoryGallery = () => {
               className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
             />
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 font-body text-sm">
-              {lightboxIndex + 1} / {photos.length}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center">
+              <p className="text-white font-body text-sm mb-1">{photos[lightboxIndex].caption}</p>
+              <span className="text-white/50 font-body text-xs">{lightboxIndex + 1} / {photos.length}</span>
             </div>
           </motion.div>
         )}
