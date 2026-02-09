@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { getThumbnailUrl, getLightboxUrl } from '@/lib/image-utils';
 
 const BUCKET = 'gallery';
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
@@ -207,7 +208,7 @@ const Gallery = () => {
                 >
                   <div className={`relative w-full ${index % 5 === 0 ? 'h-64 md:h-[500px]' : 'h-48 md:h-60'}`}>
                     <img
-                      src={img.url}
+                      src={getThumbnailUrl(img.url, index % 5 === 0)}
                       alt={`Lavoro ${getCategoryLabel(img.folder)}`}
                       loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -277,7 +278,7 @@ const Gallery = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
-              src={filteredImages[lightboxIndex].url}
+              src={getLightboxUrl(filteredImages[lightboxIndex].url)}
               alt="Galleria lavori Edilmec"
               className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
