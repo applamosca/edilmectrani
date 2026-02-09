@@ -3,6 +3,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 import { getThumbnailUrl, getLightboxUrl } from '@/lib/image-utils';
+import LazyImage from '@/components/LazyImage';
 
 const BUCKET = 'gallery';
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
@@ -207,12 +208,11 @@ const Gallery = () => {
                   onClick={() => openLightbox(index)}
                 >
                   <div className={`relative w-full ${index % 5 === 0 ? 'h-64 md:h-[500px]' : 'h-48 md:h-60'}`}>
-                    <img
-                      src={getThumbnailUrl(img.url, index % 5 === 0)}
-                      alt={`Lavoro ${getCategoryLabel(img.folder)}`}
-                      loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
+                      <LazyImage
+                        src={getThumbnailUrl(img.url, index % 5 === 0)}
+                        alt={`Lavoro ${getCategoryLabel(img.folder)}`}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-navy-deep/0 group-hover:bg-navy-deep/60 transition-all duration-500 flex items-center justify-center">
                       <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center gap-2">

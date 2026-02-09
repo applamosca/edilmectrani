@@ -3,6 +3,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
 import { X, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
 import { getThumbnailUrl, getLightboxUrl } from '@/lib/image-utils';
+import LazyImage from '@/components/LazyImage';
 
 const BUCKET = 'gallery';
 const FOLDER = 'fotoinizi';
@@ -141,10 +142,9 @@ const StoryGallery = () => {
             onClick={() => openLightbox(index)}
           >
             <div className={`relative w-full ${index === 0 ? 'h-64 md:h-[420px]' : 'h-40 md:h-56'}`}>
-              <img
+              <LazyImage
                 src={getThumbnailUrl(photo.url, index === 0)}
                 alt="Foto storica Edilmec - Le origini"
-                loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105 sepia-[.15] group-hover:sepia-0"
               />
               {/* Warm vintage overlay */}
