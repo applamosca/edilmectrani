@@ -108,10 +108,10 @@ const Footer = () => {
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-red-edilmec flex-shrink-0" />
                 <a
-                  href="mailto:edilmectrani@gmail.com"
+                  href="mailto:info@edilmectrani.it"
                   className="font-body text-steel-light text-sm hover:text-red-edilmec transition-colors"
                 >
-                  edilmectrani@gmail.com
+                  info@edilmectrani.it
                 </a>
               </div>
               {/* WhatsApp Direct Link */}
@@ -175,7 +175,7 @@ const Footer = () => {
             '@id': 'https://www.edilmectrani.it',
             url: 'https://www.edilmectrani.it',
             telephone: '+39 349 5360705',
-            email: 'edilmectrani@gmail.com',
+            email: 'info@edilmectrani.it',
             vatID: 'IT05134830727',
             address: {
               '@type': 'PostalAddress',
