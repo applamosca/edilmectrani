@@ -26,7 +26,7 @@ const CAPTIONS = [
 ];
 
 // Which photo to show as preview (0-indexed, so index 2 = photo 3)
-const PREVIEW_INDEX = 2;
+const PREVIEW_INDEX = 1;
 
 const StoryGallery = () => {
   const ref = useRef(null);
