@@ -22,7 +22,12 @@ const faqs = [
   {
     question: 'Dove si trova l\'officina Edilmec?',
     answer:
-      "L'officina meccanica si trova a Trani (BT), in Via Giorgio Castriota Skanderbeg 15, operativa per le province di Barletta-Andria-Trani e Bari. Serviamo tutta la Puglia e per progetti importanti lavoriamo anche a livello nazionale con spedizione del prodotto finito.",
+      "L'officina meccanica si trova a Trani (BT), in Via Giorgio Castriota Skanderbeg 15, CAP 76125. Siamo operativi per le province di Barletta-Andria-Trani e Bari. Serviamo tutta la Puglia e per progetti importanti lavoriamo anche a livello nazionale con spedizione del prodotto finito.",
+  },
+  {
+    question: 'Come posso contattare EDILMEC per un preventivo?',
+    answer:
+      "Puoi contattarci in diversi modi: telefonicamente al numero 349 536 0705 (rispondiamo sempre), via email a info@edilmectrani.it, tramite WhatsApp allo stesso numero, oppure compilando il modulo di contatto sul nostro sito. Tutti i preventivi sono gratuiti e senza impegno.",
   },
   {
     question: 'Chi realizza pezzi meccanici fuori produzione a Trani?',
@@ -32,7 +37,7 @@ const faqs = [
   {
     question: 'Dove trovare un tornitore esperto per riparazioni urgenti nella provincia BAT?',
     answer:
-      "EDILMEC a Trani offre servizi di tornitura CNC e riparazioni meccaniche urgenti per tutta la provincia di Barletta-Andria-Trani. Savino Di Cugno, con anni di esperienza come tornitore programmatore, garantisce interventi rapidi e precisi anche per i lavori più complessi.",
+      "EDILMEC a Trani offre servizi di tornitura CNC e riparazioni meccaniche urgenti per tutta la provincia di Barletta-Andria-Trani. Savino Di Cugno, con anni di esperienza come tornitore programmatore, garantisce interventi rapidi e precisi anche per i lavori più complessi. Chiamaci al 349 536 0705.",
   },
   {
     question: 'Cosa fa EDILMEC S.a.s.?',
@@ -52,17 +57,42 @@ const faqs = [
   {
     question: 'Quanto tempo ci vuole per realizzare un pezzo su misura?',
     answer:
-      "I tempi variano in base alla complessità del pezzo. Per componenti semplici, possiamo consegnare in 2-3 giorni lavorativi. Per pezzi complessi o lavorazioni speciali, forniamo sempre una stima precisa dopo l'analisi tecnica. Per urgenze, offriamo servizio prioritario.",
+      "I tempi variano in base alla complessità del pezzo. Per componenti semplici, possiamo consegnare in 2-3 giorni lavorativi. Per pezzi complessi o lavorazioni speciali, forniamo sempre una stima precisa dopo l'analisi tecnica. Per urgenze, offriamo servizio prioritario. Contattaci al 349 536 0705 per una stima rapida.",
   },
   {
     question: 'EDILMEC offre preventivi gratuiti?',
     answer:
-      "Assolutamente sì! Tutti i nostri preventivi sono gratuiti e senza impegno. Contattaci telefonicamente al 349 5360705, via email o compilando il form sul sito. Dopo aver valutato la tua richiesta, ti forniremo un preventivo dettagliato con tempi e costi.",
+      "Assolutamente sì! Tutti i nostri preventivi sono gratuiti e senza impegno. Contattaci telefonicamente al 349 536 0705, via email a info@edilmectrani.it o compilando il form sul sito. Dopo aver valutato la tua richiesta, ti forniremo un preventivo dettagliato con tempi e costi.",
   },
   {
     question: 'Quali materiali lavorate?',
     answer:
       "Lavoriamo una vasta gamma di materiali metallici: Acciaio al carbonio e legato, Acciaio inossidabile (inox 304, 316, ecc.), Alluminio e leghe leggere, Bronzo e ottone, Ghisa, Materie plastiche tecniche. Ogni materiale richiede competenze specifiche che abbiamo maturato in anni di esperienza.",
+  },
+  {
+    question: 'Qual è il numero di telefono di EDILMEC?',
+    answer:
+      "Il numero di telefono diretto di EDILMEC è 349 536 0705. Rispondiamo sempre durante l'orario lavorativo (Lun-Ven 08:00-18:00). Puoi anche scriverci su WhatsApp allo stesso numero o inviarci un'email a info@edilmectrani.it.",
+  },
+  {
+    question: 'Qual è l\'indirizzo esatto dell\'officina EDILMEC a Trani?',
+    answer:
+      "L'officina EDILMEC si trova in Via Giorgio Castriota Skanderbeg 15, 76125 Trani (BT), Puglia. Siamo facilmente raggiungibili dalla statale e disponiamo di parcheggio. Puoi cercarci su Google Maps come 'Edilmec Trani'.",
+  },
+  {
+    question: 'Quali sono gli orari di apertura dell\'officina?',
+    answer:
+      "L'officina è aperta dal lunedì al venerdì dalle 08:00 alle 18:00. Il sabato siamo disponibili su appuntamento per urgenze o ritiri. Puoi contattarci al 349 536 0705 o a info@edilmectrani.it per fissare un appuntamento.",
+  },
+  {
+    question: 'EDILMEC lavora anche per privati o solo per aziende?',
+    answer:
+      "Lavoriamo sia per aziende industriali che per privati. Che tu abbia bisogno di un singolo pezzo per una riparazione domestica o di una serie di componenti per la tua azienda, siamo a disposizione. Nessun lavoro è troppo piccolo o troppo grande per noi.",
+  },
+  {
+    question: 'In quali zone opera EDILMEC?',
+    answer:
+      "EDILMEC opera principalmente nella provincia BAT (Barletta-Andria-Trani), nella provincia di Bari e in tutta la Puglia. Per progetti importanti, lavoriamo anche a livello nazionale con possibilità di spedizione del prodotto finito in tutta Italia.",
   },
 ];
 
