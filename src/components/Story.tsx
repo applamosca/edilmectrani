@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Quote, Award, Heart, Target, Building2, MapPin, Wrench, Cpu, Users, Lightbulb, Factory } from 'lucide-react';
+import { Quote, Building2, MapPin, Wrench, Cpu, Users, Lightbulb } from 'lucide-react';
 import savinoCnc from '@/assets/savino-cnc.jpg';
 import StoryGallery from './StoryGallery';
 
@@ -197,47 +197,6 @@ const Story = () => {
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Values Cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="grid md:grid-cols-3 gap-6 mt-20"
-        >
-          {[
-            {
-              icon: Heart,
-              title: 'Passione',
-              description: "L'amore per la meccanica tramandato da tre generazioni.",
-            },
-            {
-              icon: Target,
-              title: 'Precisione',
-              description: 'Tolleranze al centesimo di millimetro.',
-            },
-            {
-              icon: Award,
-              title: 'Affidabilità',
-              description: 'Ogni lavoro consegnato è una promessa mantenuta.',
-            },
-          ].map((value, index) => (
-            <div
-              key={index}
-              className="bg-background p-8 rounded-lg shadow-industrial hover:shadow-heavy transition-shadow duration-300 text-center group"
-            >
-              <div className="w-16 h-16 mx-auto mb-4 rounded-lg bg-navy/10 flex items-center justify-center group-hover:bg-red-edilmec/10 transition-colors duration-300">
-                <value.icon className="w-8 h-8 text-navy group-hover:text-red-edilmec transition-colors duration-300" />
-              </div>
-              <h4 className="font-display text-lg text-foreground font-semibold mb-2">
-                {value.title}
-              </h4>
-              <p className="font-body text-muted-foreground text-sm">
-                {value.description}
-              </p>
-            </div>
-          ))}
-        </motion.div>
 
         {/* Origin Photos */}
         <StoryGallery />
