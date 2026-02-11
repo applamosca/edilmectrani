@@ -51,14 +51,16 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Telefono',
-      content: 'Chiamaci per un preventivo',
-      subcontent: 'Rispondiamo sempre',
+      content: '349 536 0705',
+      subcontent: 'Chiamaci per un preventivo',
+      href: 'tel:+393495360705',
     },
     {
       icon: Mail,
       title: 'Email',
-      content: 'edilmectrani@pec.it',
-      subcontent: 'PEC ufficiale',
+      content: 'info@edilmectrani.it',
+      subcontent: 'Scrivici per informazioni',
+      href: 'mailto:info@edilmectrani.it',
     },
     {
       icon: Clock,
@@ -104,23 +106,28 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-2 space-y-6"
           >
-            {contactInfo.map((item, index) => (
-              <div
-                key={index}
-                className="flex items-start gap-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors duration-300"
-              >
-                <div className="w-12 h-12 rounded-lg bg-red-edilmec/20 flex items-center justify-center flex-shrink-0">
-                  <item.icon className="w-6 h-6 text-red-edilmec" />
-                </div>
-                <div>
-                  <h4 className="font-display text-white font-semibold mb-1">
-                    {item.title}
-                  </h4>
-                  <p className="font-body text-steel-light text-sm">{item.content}</p>
-                  <p className="font-body text-steel text-xs">{item.subcontent}</p>
-                </div>
-              </div>
-            ))}
+            {contactInfo.map((item, index) => {
+              const Wrapper = item.href ? 'a' : 'div';
+              const wrapperProps = item.href ? { href: item.href, target: item.href.startsWith('mailto:') ? undefined : undefined, rel: undefined } : {};
+              return (
+                <Wrapper
+                  key={index}
+                  {...wrapperProps}
+                  className="flex items-start gap-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors duration-300"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-red-edilmec/20 flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-6 h-6 text-red-edilmec" />
+                  </div>
+                  <div>
+                    <h4 className="font-display text-white font-semibold mb-1">
+                      {item.title}
+                    </h4>
+                    <p className="font-body text-steel-light text-sm">{item.content}</p>
+                    <p className="font-body text-steel text-xs">{item.subcontent}</p>
+                  </div>
+                </Wrapper>
+              );
+            })}
 
             {/* Map */}
             <div className="relative rounded-lg overflow-hidden h-48 bg-navy-light">
