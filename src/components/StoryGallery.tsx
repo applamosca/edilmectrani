@@ -138,11 +138,11 @@ const StoryGallery = () => {
           className="group relative overflow-hidden rounded-xl cursor-pointer border-2 border-transparent hover:border-red-edilmec/40 transition-all duration-500"
           onClick={() => openLightbox(PREVIEW_INDEX < photos.length ? PREVIEW_INDEX : 0)}
         >
-          <div className="relative w-full aspect-[4/3]">
+          <div className="relative w-full aspect-[3/2]">
             <LazyImage
               src={getThumbnailUrl(previewPhoto.url, true)}
               alt="Foto storica Edilmec - Le origini"
-              className="absolute inset-0 w-full h-full object-contain bg-black/5 transition-all duration-700 group-hover:scale-105 sepia-[.15] group-hover:sepia-0"
+              className="absolute inset-0 w-full h-full object-cover object-top transition-all duration-700 group-hover:scale-105 sepia-[.15] group-hover:sepia-0"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-transparent to-transparent group-hover:from-navy-deep/50 transition-all duration-500" />
             
