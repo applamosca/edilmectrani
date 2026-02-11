@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
-import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Images } from 'lucide-react';
 import { getThumbnailUrl, getLightboxUrl } from '@/lib/image-utils';
 import LazyImage from '@/components/LazyImage';
 
 const BUCKET = 'gallery';
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 
 // Folders to exclude
 const EXCLUDED_FOLDERS = ['fotoinizi'];
@@ -27,14 +26,20 @@ interface GalleryImage {
   folder: string;
 }
 
+interface CategoryData {
+  name: string;
+  label: string;
+  images: GalleryImage[];
+  coverImage: GalleryImage;
+}
+
 const Gallery = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
-  const [categories, setCategories] = useState<string[]>([]);
-  const [images, setImages] = useState<GalleryImage[]>([]);
-  const [activeCategory, setActiveCategory] = useState<string>('all');
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [loading, setLoading] = useState(true);
+  // Lightbox state: which category and which image index
+  const [lightbox, setLightbox] = useState<{ categoryIndex: number; imageIndex: number } | null>(null);
 
   useEffect(() => {
     fetchGallery();
@@ -42,7 +47,6 @@ const Gallery = () => {
 
   const fetchGallery = async () => {
     try {
-      // List all folders
       const { data: folders } = await supabase.storage.from(BUCKET).list('', {
         limit: 100,
         sortBy: { column: 'name', order: 'asc' },
@@ -54,8 +58,7 @@ const Gallery = () => {
         (f) => f.id === null && !EXCLUDED_FOLDERS.includes(f.name)
       );
 
-      const folderNames: string[] = [];
-      const allImages: GalleryImage[] = [];
+      const results: CategoryData[] = [];
 
       for (const folder of validFolders) {
         const { data: files } = await supabase.storage.from(BUCKET).list(folder.name, {
@@ -71,20 +74,20 @@ const Gallery = () => {
 
         if (imageFiles.length === 0) continue;
 
-        folderNames.push(folder.name);
-
-        for (const file of imageFiles) {
+        const images: GalleryImage[] = imageFiles.map((file) => {
           const { data } = supabase.storage.from(BUCKET).getPublicUrl(`${folder.name}/${file.name}`);
-          allImages.push({
-            name: file.name,
-            url: data.publicUrl,
-            folder: folder.name,
-          });
-        }
+          return { name: file.name, url: data.publicUrl, folder: folder.name };
+        });
+
+        results.push({
+          name: folder.name,
+          label: CATEGORY_LABELS[folder.name] || folder.name,
+          images,
+          coverImage: images[0],
+        });
       }
 
-      setCategories(folderNames);
-      setImages(allImages);
+      setCategoryData(results);
     } catch (err) {
       console.error('Error fetching gallery:', err);
     } finally {
@@ -92,27 +95,21 @@ const Gallery = () => {
     }
   };
 
-  const filteredImages =
-    activeCategory === 'all'
-      ? images
-      : images.filter((img) => img.folder === activeCategory);
+  const currentImages = lightbox !== null ? categoryData[lightbox.categoryIndex]?.images : [];
 
-  const openLightbox = (index: number) => setLightboxIndex(index);
-  const closeLightbox = () => setLightboxIndex(null);
-
+  const closeLightbox = () => setLightbox(null);
   const goNext = () => {
-    if (lightboxIndex === null) return;
-    setLightboxIndex((lightboxIndex + 1) % filteredImages.length);
+    if (!lightbox || !currentImages.length) return;
+    setLightbox({ ...lightbox, imageIndex: (lightbox.imageIndex + 1) % currentImages.length });
   };
-
   const goPrev = () => {
-    if (lightboxIndex === null) return;
-    setLightboxIndex((lightboxIndex - 1 + filteredImages.length) % filteredImages.length);
+    if (!lightbox || !currentImages.length) return;
+    setLightbox({ ...lightbox, imageIndex: (lightbox.imageIndex - 1 + currentImages.length) % currentImages.length });
   };
 
   // Keyboard navigation
   useEffect(() => {
-    if (lightboxIndex === null) return;
+    if (lightbox === null) return;
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowRight') goNext();
@@ -120,10 +117,7 @@ const Gallery = () => {
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [lightboxIndex, filteredImages.length]);
-
-  const getCategoryLabel = (name: string) =>
-    CATEGORY_LABELS[name] || name.replace(/^(foto|lavoridi)/, '').replace(/([A-Z])/g, ' $1');
+  }, [lightbox, currentImages.length]);
 
   return (
     <section id="galleria" className="py-20 md:py-32 bg-background relative overflow-hidden">
@@ -144,40 +138,8 @@ const Gallery = () => {
             Galleria <span className="text-red-edilmec">Lavori</span>
           </h2>
           <p className="text-muted-foreground text-lg font-body leading-relaxed">
-            Una selezione dei nostri lavori più rappresentativi, dalla fresatura CNC al riporto a freddo.
+            Clicca su una categoria per sfogliare i lavori. Dalla fresatura CNC al riporto a freddo.
           </p>
-        </motion.div>
-
-        {/* Category Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-2 mb-12"
-        >
-          <button
-            onClick={() => setActiveCategory('all')}
-            className={`px-5 py-2.5 rounded-full font-body text-sm font-semibold uppercase tracking-wider transition-all duration-300 ${
-              activeCategory === 'all'
-                ? 'bg-red-edilmec text-white shadow-lg'
-                : 'bg-muted text-muted-foreground hover:bg-accent hover:text-foreground'
-            }`}
-          >
-            Tutti
-          </button>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2.5 rounded-full font-body text-sm font-semibold uppercase tracking-wider transition-all duration-300 ${
-                activeCategory === cat
-                  ? 'bg-red-edilmec text-white shadow-lg'
-                  : 'bg-muted text-muted-foreground hover:bg-accent hover:text-foreground'
-              }`}
-            >
-              {getCategoryLabel(cat)}
-            </button>
-          ))}
         </motion.div>
 
         {/* Loading State */}
@@ -187,59 +149,56 @@ const Gallery = () => {
           </div>
         )}
 
-        {/* Image Grid - Masonry-like */}
+        {/* Category Cards - 1 cover per category */}
         {!loading && (
-          <motion.div
-            layout
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredImages.map((img, index) => (
-                <motion.div
-                  key={img.url}
-                  layout
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.5) }}
-                  className={`group relative overflow-hidden rounded-lg cursor-pointer ${
-                    index % 5 === 0 ? 'row-span-2' : ''
-                  }`}
-                  onClick={() => openLightbox(index)}
-                >
-                  <div className={`relative w-full ${index % 5 === 0 ? 'h-64 md:h-[500px]' : 'h-48 md:h-60'}`}>
-                      <LazyImage
-                        src={getThumbnailUrl(img.url, index % 5 === 0)}
-                        alt={`Lavoro ${getCategoryLabel(img.folder)}`}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-navy-deep/0 group-hover:bg-navy-deep/60 transition-all duration-500 flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center gap-2">
-                        <ZoomIn className="w-8 h-8 text-white" />
-                        <span className="text-white font-body text-xs uppercase tracking-widest">
-                          {getCategoryLabel(img.folder)}
-                        </span>
-                      </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {categoryData.map((cat, catIndex) => (
+              <motion.div
+                key={cat.name}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: Math.min(catIndex * 0.1, 0.5) }}
+                className="group relative overflow-hidden rounded-xl cursor-pointer"
+                onClick={() => setLightbox({ categoryIndex: catIndex, imageIndex: 0 })}
+              >
+                <div className="relative w-full h-48 md:h-64">
+                  <LazyImage
+                    src={getThumbnailUrl(cat.coverImage.url, true)}
+                    alt={`Lavori di ${cat.label} - Edilmec`}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  {/* Dark overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-navy-deep/30 to-transparent group-hover:from-navy-deep/70 transition-all duration-500" />
+                  
+                  {/* Category label + count */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+                    <h3 className="font-display text-white text-lg md:text-xl font-bold mb-1">
+                      {cat.label}
+                    </h3>
+                    <div className="flex items-center gap-2">
+                      <Images className="w-4 h-4 text-white/70" />
+                      <span className="text-white/70 font-body text-xs uppercase tracking-wider">
+                        {cat.images.length} foto
+                      </span>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         )}
 
         {/* Empty State */}
-        {!loading && filteredImages.length === 0 && (
+        {!loading && categoryData.length === 0 && (
           <p className="text-center text-muted-foreground py-16 font-body text-lg">
-            Nessuna foto in questa categoria.
+            Nessuna foto disponibile.
           </p>
         )}
       </div>
 
-      {/* Lightbox */}
+      {/* Lightbox - scrolls through all images of the selected category */}
       <AnimatePresence>
-        {lightboxIndex !== null && filteredImages[lightboxIndex] && (
+        {lightbox !== null && currentImages[lightbox.imageIndex] && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -273,20 +232,25 @@ const Gallery = () => {
 
             {/* Image */}
             <motion.img
-              key={filteredImages[lightboxIndex].url}
+              key={currentImages[lightbox.imageIndex].url}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
-              src={getLightboxUrl(filteredImages[lightboxIndex].url)}
-              alt="Galleria lavori Edilmec"
+              src={getLightboxUrl(currentImages[lightbox.imageIndex].url)}
+              alt={`Lavoro ${categoryData[lightbox.categoryIndex]?.label}`}
               className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
             />
 
-            {/* Counter */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 font-body text-sm">
-              {lightboxIndex + 1} / {filteredImages.length}
+            {/* Counter + Category */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center">
+              <p className="text-white font-display text-sm font-semibold mb-1">
+                {categoryData[lightbox.categoryIndex]?.label}
+              </p>
+              <span className="text-white/50 font-body text-xs">
+                {lightbox.imageIndex + 1} / {currentImages.length}
+              </span>
             </div>
           </motion.div>
         )}

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
-import { X, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Camera, Images } from 'lucide-react';
 import { getThumbnailUrl, getLightboxUrl } from '@/lib/image-utils';
 import LazyImage from '@/components/LazyImage';
 
@@ -16,7 +16,7 @@ interface OriginPhoto {
 
 const CAPTIONS = [
   'Io e mio nonno – dove tutto è iniziato',
-  'I primi colleghi, i primi passi',
+  'Mio nonno – il maestro che mi ha insegnato tutto',
   'Le mani che mi hanno insegnato il mestiere',
   'Io e un collega delle prime armi',
   'La squadra delle origini',
@@ -24,6 +24,9 @@ const CAPTIONS = [
   'Crescere tra trucioli e passione',
   'Le radici della nostra storia',
 ];
+
+// Which photo to show as preview (0-indexed, so index 2 = photo 3)
+const PREVIEW_INDEX = 2;
 
 const StoryGallery = () => {
   const ref = useRef(null);
@@ -89,6 +92,7 @@ const StoryGallery = () => {
   }, [lightboxIndex, photos.length]);
 
   const isReady = !loading && photos.length > 0;
+  const previewPhoto = photos[PREVIEW_INDEX] || photos[0];
 
   if (loading) {
     return (
@@ -98,7 +102,7 @@ const StoryGallery = () => {
     );
   }
 
-  if (photos.length === 0) return null;
+  if (photos.length === 0 || !previewPhoto) return null;
 
   return (
     <div ref={ref}>
@@ -123,46 +127,42 @@ const StoryGallery = () => {
         </p>
       </motion.div>
 
-      {/* Photo grid - vintage feel */}
+      {/* Single preview photo */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.7, delay: 0.2 }}
-        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
+        className="max-w-2xl mx-auto"
       >
-        {photos.map((photo, index) => (
-          <motion.div
-            key={photo.name}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isReady ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.5, delay: Math.min(index * 0.08, 0.6) }}
-            className={`group relative overflow-hidden rounded-lg cursor-pointer border-2 border-transparent hover:border-red-edilmec/40 transition-all duration-500 ${
-              index === 0 ? 'col-span-2 row-span-2' : ''
-            }`}
-            onClick={() => openLightbox(index)}
-          >
-            <div className={`relative w-full ${index === 0 ? 'h-64 md:h-[420px]' : 'h-40 md:h-56'}`}>
-              <LazyImage
-                src={getThumbnailUrl(photo.url, index === 0)}
-                alt="Foto storica Edilmec - Le origini"
-                className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105 sepia-[.15] group-hover:sepia-0"
-              />
-              {/* Warm vintage overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/60 via-transparent to-muted/10 group-hover:from-navy-deep/40 transition-all duration-500" />
-              {/* Hover icon + caption */}
-              <div className="absolute inset-0 flex flex-col items-center justify-end pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <Camera className="w-6 h-6 text-white drop-shadow-lg mb-2" />
-                <span className="text-white text-xs md:text-sm font-body text-center px-3 drop-shadow-lg">
-                  {photo.caption}
+        <div
+          className="group relative overflow-hidden rounded-xl cursor-pointer border-2 border-transparent hover:border-red-edilmec/40 transition-all duration-500"
+          onClick={() => openLightbox(PREVIEW_INDEX < photos.length ? PREVIEW_INDEX : 0)}
+        >
+          <div className="relative w-full h-72 md:h-[450px]">
+            <LazyImage
+              src={getThumbnailUrl(previewPhoto.url, true)}
+              alt="Foto storica Edilmec - Le origini"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105 sepia-[.15] group-hover:sepia-0"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-transparent to-muted/10 group-hover:from-navy-deep/50 transition-all duration-500" />
+            
+            {/* Caption & gallery hint */}
+            <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
+              <div>
+                <Camera className="w-5 h-5 text-white/80 mb-2" />
+                <span className="text-white font-body text-sm md:text-base drop-shadow-lg">
+                  {previewPhoto.caption}
                 </span>
               </div>
-              {/* Always-visible caption on mobile */}
-              <div className="absolute bottom-0 left-0 right-0 bg-navy-deep/70 px-2 py-1.5 md:hidden">
-                <span className="text-white text-xs font-body">{photo.caption}</span>
+              <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-2">
+                <Images className="w-4 h-4 text-white" />
+                <span className="text-white font-body text-xs uppercase tracking-wider">
+                  {photos.length} foto
+                </span>
               </div>
             </div>
-          </motion.div>
-        ))}
+          </div>
+        </div>
       </motion.div>
 
       {/* Lightbox */}
