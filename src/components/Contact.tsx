@@ -181,7 +181,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    placeholder="Mario Rossi"
+                    placeholder=""
                     className="border-border focus:border-red-edilmec"
                   />
                 </div>
@@ -196,7 +196,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    placeholder="mario@esempio.it"
+                    placeholder=""
                     className="border-border focus:border-red-edilmec"
                   />
                 </div>
@@ -212,7 +212,7 @@ const Contact = () => {
                   type="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="+39 333 1234567"
+                  placeholder=""
                   className="border-border focus:border-red-edilmec"
                 />
               </div>
@@ -227,7 +227,7 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  placeholder="Descrivi il pezzo che ti serve, allega eventuali dettagli su materiali, dimensioni o urgenza..."
+                  placeholder=""
                   rows={5}
                   className="border-border focus:border-red-edilmec resize-none"
                 />
