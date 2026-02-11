@@ -11,14 +11,14 @@ const services = [
     description: 'Lavorazioni di precisione con torni e frese a controllo numerico. Programmazione diretta in macchina per geometrie complesse.',
   },
   {
+    icon: Settings,
+    title: 'Costruzione Ingranaggi e Componenti',
+    description: 'Costruzione di ingranaggi a dentatura dritta e elicoidale, viti senza fine, corone in bronzo, cremagliere e componenti meccanici su misura da campioni o disegni.',
+  },
+  {
     icon: Wrench,
     title: 'Riparazioni e Saldature',
     description: 'Saldature TIG, MIG e ad elettrodo per acciaio, inox e alluminio. Riparazioni strutturali su macchinari industriali.',
-  },
-  {
-    icon: Settings,
-    title: 'Costruzione Componenti a Campione',
-    description: 'Realizzazione di pezzi meccanici su misura partendo da campioni, disegni tecnici o specifiche del cliente.',
   },
   {
     icon: Sparkles,

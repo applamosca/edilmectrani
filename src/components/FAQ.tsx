@@ -37,7 +37,12 @@ const faqs = [
   {
     question: 'Cosa fa EDILMEC S.a.s.?',
     answer:
-      "EDILMEC S.a.s. è un'officina meccanica di precisione specializzata in: Tornitura e programmazione CNC, Costruzioni meccaniche e saldature, Manutenzione e riparazione impianti industriali, Ricostruzione di pezzi meccanici fuori produzione, e Riporto a Freddo (spruzzatura termica) per il recupero di pezzi critici. Lavoriamo per l'industria, l'agricoltura e i privati in tutta la Puglia.",
+      "EDILMEC S.a.s. è un'officina meccanica di precisione specializzata in: Tornitura e programmazione CNC, Costruzione di ingranaggi a dentatura dritta e elicoidale, viti senza fine, corone in bronzo e cremagliere, Costruzioni meccaniche e saldature, Manutenzione e riparazione impianti industriali, Ricostruzione di pezzi meccanici fuori produzione, e Riporto a Freddo (spruzzatura termica) per il recupero di pezzi critici. Lavoriamo per l'industria, l'agricoltura e i privati in tutta la Puglia.",
+  },
+  {
+    question: 'Costruite ingranaggi e viti senza fine?',
+    answer:
+      "Sì, realizziamo ingranaggi a dentatura dritta e a dentatura dritta elicoidale, viti senza fine, corone in bronzo, cremagliere e altri organi di trasmissione. Lavoriamo sia su disegno tecnico che su campione, ricostruendo anche pezzi fuori produzione con precisione e materiali di alta qualità.",
   },
   {
     question: 'È possibile ricostruire un pezzo meccanico partendo da uno rotto?',
