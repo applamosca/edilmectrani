@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
   const ref = useRef(null);
@@ -17,6 +18,7 @@ const Contact = () => {
     email: '',
     phone: '',
     message: '',
+    company_website: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -27,17 +29,27 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (formData.company_website) { // bot: finge successo e scarta
+      toast({ title: 'Richiesta inviata!', description: 'Ti risponderemo al più presto.' });
+      setFormData({ name: '', email: '', phone: '', message: '', company_website: '' });
+      return;
+    }
     setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    toast({
-      title: 'Messaggio inviato!',
-      description: 'Ti risponderemo il prima possibile.',
+    const id = crypto.randomUUID();
+    const { error } = await supabase.from('leads').insert({
+      id, name: formData.name, email: formData.email,
+      phone: formData.phone, message: formData.message,
+      source: 'website_contact_form',
     });
-
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    if (error) {
+      toast({ title: 'Errore invio', description: 'Riprova o chiamaci al 349 536 0705.', variant: 'destructive' });
+      setIsSubmitting(false);
+      return;
+    }
+    // Notifica best-effort: il lead è già salvato, se fallisce non si perde nulla
+    supabase.functions.invoke('notify-lead', { body: { id } }).catch(() => {});
+    toast({ title: 'Richiesta inviata!', description: 'Ti risponderemo al più presto.' });
+    setFormData({ name: '', email: '', phone: '', message: '', company_website: '' });
     setIsSubmitting(false);
   };
 
@@ -169,6 +181,10 @@ const Contact = () => {
               <h3 className="font-display text-2xl text-foreground font-bold mb-6">
                 Compila il Form
               </h3>
+
+              <input type="text" name="company_website" tabIndex={-1} autoComplete="off"
+                value={formData.company_website} onChange={handleChange} aria-hidden="true"
+                style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0 }} />
 
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div className="space-y-2">
