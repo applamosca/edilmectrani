@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "ionoscloud": {
+      "command": "/usr/local/bin/ionoscloud-mcp",
+      "env": {
+        "IONOS_TOKEN": "${IONOS_TOKEN}",
+        "IONOS_S3_ACCESS_KEY": "${IONOS_S3_ACCESS_KEY}",
+        "IONOS_S3_SECRET_KEY": "${IONOS_S3_SECRET_KEY}"
+      }
+    }
+  }
+}
