@@ -1,0 +1,18 @@
+{
+  "name": "edilmectrani-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local MCP servers for managing this project's domains: Cloudflare DNS (primary) and IONOS hosting (registrar/SSL).",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start:cloudflare": "node cloudflare/server.js",
+    "start:ionos": "node ionos/server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.11.4"
+  }
+}

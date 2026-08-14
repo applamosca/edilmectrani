@@ -1,11 +1,17 @@
 {
   "mcpServers": {
-    "ionoscloud": {
-      "command": "/usr/local/bin/ionoscloud-mcp",
+    "cloudflare": {
+      "command": "node",
+      "args": ["${CLAUDE_PROJECT_DIR:-.}/mcp/cloudflare/server.js"],
       "env": {
-        "IONOS_TOKEN": "${IONOS_TOKEN}",
-        "IONOS_S3_ACCESS_KEY": "${IONOS_S3_ACCESS_KEY}",
-        "IONOS_S3_SECRET_KEY": "${IONOS_S3_SECRET_KEY}"
+        "CLOUDFLARE_API_TOKEN": "${CLOUDFLARE_API_TOKEN}"
+      }
+    },
+    "ionos": {
+      "command": "node",
+      "args": ["${CLAUDE_PROJECT_DIR:-.}/mcp/ionos/server.js"],
+      "env": {
+        "IONOS_API_KEY": "${IONOS_API_KEY}"
       }
     }
   }

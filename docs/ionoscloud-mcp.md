@@ -1,65 +1,32 @@
-# IONOS Cloud MCP server
+# IONOS Cloud MCP — not used by this project
 
-This repository ships a project-scoped [Model Context Protocol](https://modelcontextprotocol.io)
-configuration for the [IONOS Cloud MCP server](https://github.com/ionos-cloud/ionoscloud-mcp),
-defined in [`.mcp.json`](../.mcp.json). It lets MCP-aware clients (Claude Code, Cursor,
-Cline, …) inspect and manage IONOS Cloud resources — Compute, DNS, Billing, Certificate
-Manager and Object Storage.
+> **Looking to manage this project's domains/DNS?** See
+> [`mcp/README.md`](../mcp/README.md). The active setup uses a **Cloudflare** MCP
+> (primary, for DNS) and an **IONOS hosting** MCP (registrar/SSL).
 
-The config references credentials through environment variables
-(`${IONOS_TOKEN}`, `${IONOS_S3_ACCESS_KEY}`, `${IONOS_S3_SECRET_KEY}`) so that **no secrets
-are committed to the repository**. You supply the values from your own environment.
+There are two different "IONOS" products, with different APIs:
 
-## 1. Install the server binary
+- **IONOS Cloud** (cloud.ionos.com / DCD) — the enterprise platform (Compute,
+  Kubernetes, Object Storage, Cloud DNS). Its official MCP server is
+  [`ionos-cloud/ionoscloud-mcp`](https://github.com/ionos-cloud/ionoscloud-mcp).
+- **IONOS hosting** (my.ionos.it) — domains, hosting, email. Managed via the
+  [IONOS Developer API](https://developer.hosting.ionos.com) — this is what the
+  `ionos` server in [`mcp/`](../mcp/README.md) wraps.
 
-Download the `ionoscloud-mcp` binary for your platform from the
-[releases page](https://github.com/ionos-cloud/ionoscloud-mcp/releases) and place it at the
-path referenced in `.mcp.json`:
+This project's domains are **not** on IONOS Cloud, so the `ionoscloud-mcp` server
+is not configured here. If you ever do use IONOS Cloud, you can add it to
+[`.mcp.json`](../.mcp.json) with:
 
-```sh
-# Example (adjust the download URL for your OS/arch and the release version):
-sudo install -m 0755 ./ionoscloud-mcp /usr/local/bin/ionoscloud-mcp
+```json
+{
+  "mcpServers": {
+    "ionoscloud": {
+      "command": "/usr/local/bin/ionoscloud-mcp",
+      "env": { "IONOS_TOKEN": "${IONOS_TOKEN}" }
+    }
+  }
+}
 ```
 
-If you install it elsewhere, update the `command` field in `.mcp.json` to match.
-
-## 2. Create the credentials
-
-- **`IONOS_TOKEN`** (required) — generate in the IONOS Cloud DCD under
-  **Management → Token Management**. Used for all control-plane APIs.
-- **`IONOS_S3_ACCESS_KEY` / `IONOS_S3_SECRET_KEY`** (optional) — create under
-  **Storage & Backup → IONOS Cloud Object Storage → Key management**. Only required for the
-  Object Storage data-plane tools.
-
-## 3. Export the environment variables
-
-Claude Code expands `${VAR}` in `.mcp.json` from the environment it is launched with, so
-export the variables before starting your client (add them to your shell profile, a secrets
-manager, or an untracked local env file you `source`):
-
-```sh
-export IONOS_TOKEN="your-api-token"
-export IONOS_S3_ACCESS_KEY="your-access-key"
-export IONOS_S3_SECRET_KEY="your-secret-key"
-```
-
-> Never hard-code these values into `.mcp.json` or any other tracked file. If a variable is
-> unset, the config still loads — Claude Code just reports a missing-variable warning for the
-> `ionoscloud` server in `claude mcp list`.
-
-## 4. Approve and verify (Claude Code)
-
-Project-scoped MCP servers require a one-time approval. Start Claude Code in the repo, approve
-the `ionoscloud` server when prompted, then confirm it is connected:
-
-```sh
-claude mcp list
-```
-
-## Notes
-
-- All tools default to **read-only inspection**; write operations require an explicit
-  two-phase confirmation, so the server is safe to connect for exploration.
-- The server exposes a large tool set. To load tools on demand, add
-  `"IONOS_MCP_LOAD_MODE": "lazy"` to the `env` block in `.mcp.json`.
-- Reference: [Connect Claude Code to IONOS Cloud MCP](https://docs.ionos.com/cloud/ai/mcp-server/connect-to-an-ai-client/claude-code).
+(Note: Claude Code uses `${VAR}` expansion, **not** the `${env:VAR}` shown on some
+IONOS docs pages.)
