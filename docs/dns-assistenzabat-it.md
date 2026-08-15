@@ -244,6 +244,14 @@ procedura documentata è una richiesta all'assistenza, che lo inserisce a mano:
 - **Oggetto (in inglese, esatto):** `Manual DS record required for external DNS provider`
 - **Campi richiesti:** `keyTag`, `alg`, `digestType`, `digest`, e `keyData`
   (`flags`, `protocol`, `alg`, `pubKey`)
+- **Mittente:** l'indirizzo del contratto (`pillo19@gmail.com`), non una casella
+  sul dominio — è l'unico che IONOS può confrontare con l'anagrafica
+
+Riferimenti account: ID cliente `314655314`, contratto `109066077`.
+Assistenza telefonica h24: `800 829 691`.
+
+Richiesta inviata il 15/08/2026 alle 20:46, ack automatico IONOS alle 20:47
+(elaborazione dichiarata entro ~24h).
 
 Prerequisito: se **Domain Guard** è attivo va disattivato prima, altrimenti
 IONOS non può inserire il DS.
@@ -382,6 +390,7 @@ repo del progetto BAT, se e quando ne esisterà uno.
 | 2026-08-15 | Verifica DKIM via DoH | ✅ `s1-ionos`, `s2-ionos` — ❌ `s42582890` NXDOMAIN |
 | 2026-08-15 | Verifica certificati via Certificate Transparency | ✅ SSL valido, allarme IONOS infondato |
 | 2026-08-15 | Abilitazione DNSSEC su Cloudflare | ✅ `pending` — DS key tag `2371` |
-| 2026-08-15 | Pubblicazione DS su IONOS | ⏳ **richiede mail a `transfer@ionos.com`** — non inseribile dal pannello |
+| 2026-08-15 | Richiesta DS inviata a `transfer@ionos.com` | ✅ 20:46 da `pillo19@gmail.com`, ack IONOS 20:47 (~24h) |
+| 2026-08-15 | Pubblicazione DS nel registro `.it` | ⏳ in attesa di IONOS |
 | 2026-08-15 | Rimozione selettore orfano `s42582890` | ⏳ da decidere |
 | — | Mail di test per `dkim=pass` / `dmarc=pass` | ⏳ da fare |
