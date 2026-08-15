@@ -235,7 +235,31 @@ header originali: `spf=pass`, `dkim=pass` con `header.d=assistenzabat.it`,
 Stato al 15/08/2026: **`pending`**. Attivato lato Cloudflare; resta in attesa
 finché il record DS non è pubblicato presso il registrar.
 
-Valori da inserire su IONOS (scheda Nameserver / DNSSEC):
+### ⚠️ Su IONOS il DS non è inseribile dal pannello
+
+Con nameserver esterni, IONOS **non espone alcun campo** per il record DS. La
+procedura documentata è una richiesta all'assistenza, che lo inserisce a mano:
+
+- **Destinatario:** `transfer@ionos.com`
+- **Oggetto (in inglese, esatto):** `Manual DS record required for external DNS provider`
+- **Campi richiesti:** `keyTag`, `alg`, `digestType`, `digest`, e `keyData`
+  (`flags`, `protocol`, `alg`, `pubKey`)
+
+Prerequisito: se **Domain Guard** è attivo va disattivato prima, altrimenti
+IONOS non può inserire il DS.
+
+Strade che **non** funzionano, da non comprare:
+
+| Prodotto | Perché no |
+|---|---|
+| **DNS Pro** (0 € per 12 mesi, poi 2,50 €/mese) | Il "DNSSEC incluso" riguarda le zone ospitate *da IONOS*. La zona è su Cloudflare |
+| **IONOS API** (0 €/mese) | Gestisce le zone DNS di IONOS — cioè la zona inerte. Non pubblica il DS per nameserver esterni |
+
+Nota: la pagina "Aggiungi record DNS" del pannello IONOS non contiene il tipo
+`DS`, e comunque appartiene alla zona inerte. Il DS vive al livello del
+registrar, non della zona.
+
+### Valori per la richiesta
 
 | Campo | Valore |
 |---|---|
@@ -250,9 +274,14 @@ Record DS in una riga:
 assistenzabat.it. 3600 IN DS 2371 13 2 27C2985ED939A6292F97378E4108F4C17A27AEB5FE64DB40CB33E9DE51A06C83
 ```
 
-Se il registrar chiede la DNSKEY invece del DS: flags `257`, algoritmo `13`,
-chiave pubblica
+`keyData` per la richiesta: flags `257`, protocol `3`, alg `13`, pubKey
 `mdsswUyr3DPW132mOi8V9xESWE8jTo0dxCjjnopKl+GqJxpVXckHAeF+KkxLbxILfDLUT0rAK9iUzy1L53eKGQ==`.
+
+### Finché il DS non è pubblicato
+
+Nessun rischio: la zona è firmata ma i resolver non validano nulla senza il DS
+nel registro, quindi il dominio funziona normalmente. Lo stato `pending` può
+restare indefinitamente senza effetti collaterali.
 
 ### ⚠️ DNSSEC non degrada: spegne
 
@@ -307,6 +336,10 @@ proxy).
 Priorità reale: **2FA sull'account IONOS** prima di Domain Guard. Protegge di
 più e costa zero.
 
+⚠️ Controindicazione specifica: **Domain Guard blocca l'inserimento del record
+DS** per DNSSEC (§6). Attivarlo ora significherebbe doverlo disattivare subito
+dopo.
+
 ---
 
 ## 8. Pulizia opzionale
@@ -349,6 +382,6 @@ repo del progetto BAT, se e quando ne esisterà uno.
 | 2026-08-15 | Verifica DKIM via DoH | ✅ `s1-ionos`, `s2-ionos` — ❌ `s42582890` NXDOMAIN |
 | 2026-08-15 | Verifica certificati via Certificate Transparency | ✅ SSL valido, allarme IONOS infondato |
 | 2026-08-15 | Abilitazione DNSSEC su Cloudflare | ✅ `pending` — DS key tag `2371` |
-| 2026-08-15 | Pubblicazione DS su IONOS | ⏳ **da fare a mano** (nessuna API IONOS) |
+| 2026-08-15 | Pubblicazione DS su IONOS | ⏳ **richiede mail a `transfer@ionos.com`** — non inseribile dal pannello |
 | 2026-08-15 | Rimozione selettore orfano `s42582890` | ⏳ da decidere |
 | — | Mail di test per `dkim=pass` / `dmarc=pass` | ⏳ da fare |
