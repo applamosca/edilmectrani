@@ -230,85 +230,86 @@ header originali: `spf=pass`, `dkim=pass` con `header.d=assistenzabat.it`,
 
 ---
 
-## 6. DNSSEC — abilitato su Cloudflare, DS da pubblicare su IONOS
+## 6. DNSSEC — non attivabile con IONOS come registrar
 
-Stato al 15/08/2026: **`pending`**. Attivato lato Cloudflare; resta in attesa
-finché il record DS non è pubblicato presso il registrar.
+**Esito al 15/08/2026: richiesta respinta. DNSSEC disattivato su Cloudflare.**
 
-### ⚠️ Su IONOS il DS non è inseribile dal pannello
+### Cronologia
 
-Con nameserver esterni, IONOS **non espone alcun campo** per il record DS. La
-procedura documentata è una richiesta all'assistenza, che lo inserisce a mano:
-
-- **Destinatario:** `transfer@ionos.com`
-- **Oggetto (in inglese, esatto):** `Manual DS record required for external DNS provider`
-- **Campi richiesti:** `keyTag`, `alg`, `digestType`, `digest`, e `keyData`
-  (`flags`, `protocol`, `alg`, `pubKey`)
-- **Mittente:** l'indirizzo del contratto (`pillo19@gmail.com`), non una casella
-  sul dominio — è l'unico che IONOS può confrontare con l'anagrafica
-
-Riferimenti account: ID cliente `314655314`, contratto `109066077`.
-Assistenza telefonica h24: `800 829 691`.
-
-Richiesta inviata il 15/08/2026 alle 20:46, ack automatico IONOS alle 20:47
-(elaborazione dichiarata entro ~24h).
-
-Prerequisito: se **Domain Guard** è attivo va disattivato prima, altrimenti
-IONOS non può inserire il DS.
-
-Strade che **non** funzionano, da non comprare:
-
-| Prodotto | Perché no |
+| Ora | Evento |
 |---|---|
-| **DNS Pro** (0 € per 12 mesi, poi 2,50 €/mese) | Il "DNSSEC incluso" riguarda le zone ospitate *da IONOS*. La zona è su Cloudflare |
-| **IONOS API** (0 €/mese) | Gestisce le zone DNS di IONOS — cioè la zona inerte. Non pubblica il DS per nameserver esterni |
+| 20:46 | Richiesta DS inviata a `transfer@ionos.com` dall'indirizzo del contratto |
+| 20:47 | Ack automatico IONOS (elaborazione dichiarata entro ~24h) |
+| 21:10 | Risposta di IONOS: **rifiuto** |
 
-Nota: la pagina "Aggiungi record DNS" del pannello IONOS non contiene il tipo
-`DS`, e comunque appartiene alla zona inerte. Il DS vive al livello del
-registrar, non della zona.
+Testo della risposta (Assistenza Clienti IONOS):
 
-### Valori per la richiesta
+> *"Sono costretto ad informarLa che per i domini con TLD .it non è possibile
+> l'attivazione del protocollo DNSSEC."*
 
-| Campo | Valore |
+### ⚠️ La motivazione data è falsa
+
+Il ccTLD `.it` **supporta DNSSEC**. Registro .it lo ha introdotto anni fa e
+pubblica linee guida per l'accreditamento dei registrar. Verifica empirica
+(query DS via DoH, 15/08/2026):
+
+| Dominio `.it` | Record DS |
 |---|---|
-| Key Tag | `2371` |
-| Algoritmo | `13` (ECDSAP256SHA256) |
-| Digest Type | `2` (SHA-256) |
-| Digest | `27C2985ED939A6292F97378E4108F4C17A27AEB5FE64DB40CB33E9DE51A06C83` |
+| `nic.it` | ✅ `3974 13 2 b275e4dd…` |
+| `registro.it` | ✅ `32095 13 2 f55b9b76…` |
 
-Record DS in una riga:
+Se `.it` non ammettesse DNSSEC, il registro stesso non potrebbe avere un DS
+firmato nella zona radice.
+
+### Cosa è vero, allora
+
+L'ostacolo non è il TLD: è **IONOS**. Registro .it richiede che il registrar
+superi un test di accreditamento DNSSEC per poter firmare i domini gestiti.
+IONOS non offre il servizio sui `.it`, e l'operatore ha riportato la
+limitazione del proprio pannello come se fosse una regola del registro.
+
+La distinzione conta per una ragione pratica: **non è una porta chiusa in
+assoluto**. Insistere con l'assistenza IONOS non serve — la limitazione è
+strutturale dalla loro parte. L'unica strada per avere DNSSEC su questo dominio
+è **trasferirlo a un registrar accreditato DNSSEC per `.it`**, decisione che
+esula da questo intervento.
+
+### Azione presa
+
+DNSSEC **disattivato** sulla zona Cloudflare (`status: pending-disabled` →
+`disabled`). Lasciarlo in `pending` sarebbe stato tecnicamente innocuo — senza
+DS nel registro nessun resolver valida — ma avrebbe mostrato a tempo
+indeterminato un'operazione incompiuta nel pannello.
+
+Nessun impatto su sito o posta: la zona torna semplicemente non firmata,
+esattamente come era prima del 15/08.
+
+### Se un giorno si riprende (registrar accreditato)
+
+I valori vanno **rigenerati**: riabilitando DNSSEC, Cloudflare produce una nuova
+chiave. Quelli sotto sono storici, non riutilizzabili.
+
+<details>
+<summary>Valori generati il 15/08/2026 (obsoleti)</summary>
 
 ```
 assistenzabat.it. 3600 IN DS 2371 13 2 27C2985ED939A6292F97378E4108F4C17A27AEB5FE64DB40CB33E9DE51A06C83
 ```
 
-`keyData` per la richiesta: flags `257`, protocol `3`, alg `13`, pubKey
-`mdsswUyr3DPW132mOi8V9xESWE8jTo0dxCjjnopKl+GqJxpVXckHAeF+KkxLbxILfDLUT0rAK9iUzy1L53eKGQ==`.
+keyTag `2371`, alg `13`, digestType `2`, flags `257`, protocol `3`.
 
-### Finché il DS non è pubblicato
+</details>
 
-Nessun rischio: la zona è firmata ma i resolver non validano nulla senza il DS
-nel registro, quindi il dominio funziona normalmente. Lo stato `pending` può
-restare indefinitamente senza effetti collaterali.
+Avvertenza che resterebbe valida: **un DS errato non degrada, spegne**. I
+resolver validanti rispondono `SERVFAIL` e il dominio sparisce. E finché un DS
+è pubblicato non si cambiano i nameserver né si cancella la zona senza prima
+rimuoverlo e attendere la propagazione.
 
-### ⚠️ DNSSEC non degrada: spegne
-
-Un DS errato non rende il dominio "un po' rotto" — lo rende **irraggiungibile**.
-I resolver validanti rispondono `SERVFAIL` e il sito sparisce per tutti.
-Copia-incolla sempre, mai trascrizione a mano.
-
-Regole permanenti una volta pubblicato il DS:
-
-- **Non cambiare i nameserver** finché il DS è attivo. Ordine corretto:
-  rimuovere il DS da IONOS → attendere la propagazione → poi toccare la delega.
-- **Non cancellare la zona** su Cloudflare, per lo stesso motivo.
-
-Verifica dopo la pubblicazione:
+Verifica, se mai servisse:
 
 ```bash
 curl -sS -H "accept: application/dns-json" \
   "https://cloudflare-dns.com/dns-query?name=assistenzabat.it&type=DS"
-# atteso: il DS con key tag 2371, e AD=true sulle risposte per la zona
 ```
 
 ---
@@ -344,9 +345,8 @@ proxy).
 Priorità reale: **2FA sull'account IONOS** prima di Domain Guard. Protegge di
 più e costa zero.
 
-⚠️ Controindicazione specifica: **Domain Guard blocca l'inserimento del record
-DS** per DNSSEC (§6). Attivarlo ora significherebbe doverlo disattivare subito
-dopo.
+(La controindicazione su Domain Guard e il record DS è decaduta: IONOS non
+attiva DNSSEC sui `.it` in nessun caso — vedi §6.)
 
 ---
 
@@ -389,8 +389,9 @@ repo del progetto BAT, se e quando ne esisterà uno.
 | 2026-08-15 | Creazione 3 CNAME DKIM da pannello IONOS | ✅ creati, non proxati |
 | 2026-08-15 | Verifica DKIM via DoH | ✅ `s1-ionos`, `s2-ionos` — ❌ `s42582890` NXDOMAIN |
 | 2026-08-15 | Verifica certificati via Certificate Transparency | ✅ SSL valido, allarme IONOS infondato |
-| 2026-08-15 | Abilitazione DNSSEC su Cloudflare | ✅ `pending` — DS key tag `2371` |
-| 2026-08-15 | Richiesta DS inviata a `transfer@ionos.com` | ✅ 20:46 da `pillo19@gmail.com`, ack IONOS 20:47 (~24h) |
-| 2026-08-15 | Pubblicazione DS nel registro `.it` | ⏳ in attesa di IONOS |
+| 2026-08-15 | Abilitazione DNSSEC su Cloudflare | ✅ `pending` — DS key tag `2371` (poi annullata) |
+| 2026-08-15 | Richiesta DS inviata a `transfer@ionos.com` | ✅ 20:46 da `pillo19@gmail.com`, ack 20:47 |
+| 2026-08-15 | Risposta IONOS | ❌ 21:10 **rifiutata** — motivazione tecnicamente errata (vedi §6) |
+| 2026-08-15 | Disattivazione DNSSEC su Cloudflare | ✅ `pending-disabled` |
 | 2026-08-15 | Rimozione selettore orfano `s42582890` | ⏳ da decidere |
 | — | Mail di test per `dkim=pass` / `dmarc=pass` | ⏳ da fare |
