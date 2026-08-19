@@ -1,12 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { supabase } from '@/integrations/supabase/client';
 import { X, ChevronLeft, ChevronRight, Camera, Images } from 'lucide-react';
-import { getThumbnailUrl, getLightboxUrl } from '@/lib/image-utils';
+import { getOriginPhotos } from '@/lib/gallery-data';
 import LazyImage from '@/components/LazyImage';
-
-const BUCKET = 'gallery';
-const FOLDER = 'fotoinizi';
 
 interface OriginPhoto {
   name: string;
@@ -36,37 +32,13 @@ const StoryGallery = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    const fetchPhotos = async () => {
-      try {
-        const { data: files } = await supabase.storage.from(BUCKET).list(FOLDER, {
-          limit: 50,
-          sortBy: { column: 'name', order: 'asc' },
-        });
-
-        if (!files) return;
-
-        const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.avif'];
-        const imageFiles = files.filter(
-          (f) => {
-            const ext = f.name.toLowerCase();
-            return imageExtensions.some(e => ext.endsWith(e)) || f.metadata?.mimetype?.startsWith('image/');
-          }
-        );
-
-        const result: OriginPhoto[] = imageFiles.map((file, index) => {
-          const { data } = supabase.storage.from(BUCKET).getPublicUrl(`${FOLDER}/${file.name}`);
-          return { name: file.name, url: data.publicUrl, caption: CAPTIONS[index % CAPTIONS.length] };
-        });
-
-        setPhotos(result);
-      } catch (err) {
-        console.error('Error fetching origin photos:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPhotos();
+    const result: OriginPhoto[] = getOriginPhotos().map((img, index) => ({
+      name: img.name,
+      url: img.url,
+      caption: CAPTIONS[index % CAPTIONS.length],
+    }));
+    setPhotos(result);
+    setLoading(false);
   }, []);
 
   const openLightbox = (index: number) => setLightboxIndex(index);
@@ -140,7 +112,7 @@ const StoryGallery = () => {
         >
           <div className="relative w-full aspect-[3/2]">
             <LazyImage
-              src={getThumbnailUrl(previewPhoto.url, true)}
+              src={previewPhoto.url}
               alt="Foto storica Edilmec - Le origini"
               className="absolute inset-0 w-full h-full object-cover object-top transition-all duration-700 group-hover:scale-105 sepia-[.15] group-hover:sepia-0"
             />
@@ -199,7 +171,7 @@ const StoryGallery = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
-              src={getLightboxUrl(photos[lightboxIndex].url)}
+              src={photos[lightboxIndex].url}
               alt="Foto storica Edilmec"
               className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
